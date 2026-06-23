@@ -62,7 +62,7 @@ const allStores = [
     { name: 'Namshi',            domain: 'namshi.com',           coupons: 4, color: '#E91E8C', category: 'أزياء',        desc: 'كود خصم نمشي 15% على أحدث صيحات الموضة + شحن مجاني'             },
 ];
 
-const storeCategories = ['كل الفئات', 'أزياء', 'أزياء رجالية', 'خدمات', 'إلكترونيات', 'الجمال والعناية', 'عروض اليوم', 'رحلات', 'اكسسوارات', 'احذية', 'تسوق', 'سبورت', 'منزل', 'صحة', 'غذاء'];
+const storeCategories = ['جميع الفئات', 'أزياء', 'أزياء رجالية', 'خدمات', 'إلكترونيات', 'الجمال والعناية', 'عروض اليوم', 'رحلات', 'اكسسوارات', 'احذية', 'تسوق', 'سبورت', 'منزل', 'صحة', 'غذاء'];
 
 const reviews = [
     { name: 'فواز العلوي',   date: '13-03-2026', avatar: 'ف', color: '#00BFA5', text: '"ممتاز ويعطيك كوبونات مجاناً"' },
@@ -72,9 +72,9 @@ const reviews = [
 ];
 
 const stats = [
-    { icon: '🏷️', value: '854',    label: 'كوبونات الخصم والعروض المتاحة على موقع الموفر™' },
-    { icon: '🛒', value: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع الموفر™' },
-    { icon: '👥', value: '9,312',  label: 'عدد الموفرين الشهري عبر موقع الموفر™' },
+    { icon: '🏷️', value: '854',    label: 'كوبونات الخصم والعروض المتاحة على موقع المسوق™' },
+    { icon: '🛒', value: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع المسوق™' },
+    { icon: '👥', value: '9,312',  label: 'عدد المسوقين الشهري عبر موقع المسوق™' },
     { icon: '💰', value: '15.32%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها المستخدمون' },
 ];
 
@@ -131,11 +131,11 @@ function StoreCard({ store }) {
 // ==================== MAIN PAGE ====================
 
 export default function Stores() {
-    const [activeCategory, setActiveCategory] = useState('كل الفئات');
+    const [activeCategory, setActiveCategory] = useState('جميع الفئات');
     const [showCount, setShowCount] = useState(25);
     const [showGH, setShowGH] = useState(false);
 
-    const filteredStores = activeCategory === 'كل الفئات'
+    const filteredStores = activeCategory === 'جميع الفئات'
         ? allStores
         : allStores.filter(s => s.category === activeCategory);
 
@@ -144,7 +144,7 @@ export default function Stores() {
 
     return (
         <MainLayout>
-            <Head title="جميع المتاجر - الموفر" />
+            <Head title="جميع المتاجر - المسوق" />
             <main className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
 
                 {/* Breadcrumb */}
@@ -229,8 +229,8 @@ export default function Stores() {
                                 <div className="text-4xl shrink-0">📱</div>
                                 <div className="text-right flex-1">
                                     <h3 className="font-extrabold text-gray-800">تسوق كالمحترفين</h3>
-                                    <p className="text-sm font-bold text-gray-700 mt-1">احصل على تطبيق الموفر!</p>
-                                    <p className="text-xs text-gray-500 mt-1">تقدم في المراحل واكسب الوحدات - استبدل وحدات الموفر بقسائم شرائية مميزة!</p>
+                                    <p className="text-sm font-bold text-gray-700 mt-1">احصل على تطبيق المسوق!</p>
+                                    <p className="text-xs text-gray-500 mt-1">تقدم في المراحل واكسب الوحدات - استبدل وحدات المسوق بقسائم شرائية مميزة!</p>
                                 </div>
                             </div>
                             <div className="flex gap-2">
@@ -241,11 +241,13 @@ export default function Stores() {
 
                         {/* AI Gift Finder */}
                         <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm text-right">
-                            <div className="text-3xl mb-2">🎁🤖</div>
-                            <h3 className="font-extrabold text-gray-800">اكتشف اروع الهدايا مع صياد الهدايا</h3>
-                            <p className="text-xs text-gray-500 mt-2 mb-3">اكتشف قوة الذكاء الاصطناعي مع هذا البوت الذي تم تصميمه خصيصاً لإيجاد الهدية المثالية!</p>
+                            <div className="flex justify-center mb-2">
+                                <img src="/assets/helpdesk.gif" alt="صياد الهدايا" className="w-20 h-20 object-contain" />
+                            </div>
+                            <h3 className="font-extrabold text-gray-800 text-center">مرحبا بك انا نوره</h3>
+                            <p className="text-xs text-gray-500 mt-2 mb-3">مساعدتك الذكية لإيجاد أفضل العروض والكوبونات</p>
                             <button onClick={() => setShowGH(true)} className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 rounded-xl text-sm transition-colors">
-                                جربه الآن
+                                هيا نبدأ
                             </button>
                         </div>
 
@@ -274,7 +276,7 @@ export default function Stores() {
                 {/* ===== REVIEWS ===== */}
                 <section className="mt-10 sm:mt-12">
                     <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 sm:mb-6 text-center">
-                        تقييمات حقيقية من مستخدمي تطبيق الموفر للكوبونات
+                        تقييمات حقيقية من مستخدمي تطبيق المسوق للكوبونات
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {reviews.map((review, i) => (
@@ -297,7 +299,7 @@ export default function Stores() {
 
                 {/* ===== STATS ===== */}
                 <section className="mt-8 bg-white rounded-2xl p-4 sm:p-6 shadow-sm text-right">
-                    <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">وفر المال من خلال موقع الموفر™</h2>
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">وفر المال من خلال موقع المسوق™</h2>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                         {stats.map((stat, i) => (
                             <div key={i} className="flex items-start gap-2 sm:gap-3">

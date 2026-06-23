@@ -125,7 +125,7 @@ function Sidebar({ onGiftHunter }) {
             <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                     <Link href="/stores" className="text-xs text-[#00BFA5]">كل المتاجر</Link>
-                    <h3 className="font-black text-sm text-gray-800">أفضل المتاجر</h3>
+                    <h3 className="font-black text-sm text-gray-800">المتاجر العالمية</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                     {sideStores.map((s, i) => (
@@ -140,7 +140,7 @@ function Sidebar({ onGiftHunter }) {
                 <h3 className="font-black text-sm text-gray-800 text-right mb-3">تسوق كالمحترفين</h3>
                 <div className="flex items-center gap-3">
                     <div className="flex flex-col gap-2 flex-1 text-right">
-                        <p className="font-black text-sm text-gray-800 leading-snug">احصل على تطبيق الموفر!</p>
+                        <p className="font-black text-sm text-gray-800 leading-snug">احصل على تطبيق المسوق!</p>
                         <p className="text-xs text-gray-500 leading-relaxed">تقدم في المراحل واكسب الوحدات واستبدلها بقسائم شرائية مميزة!</p>
                         <div className="flex flex-col gap-1.5 mt-1">
                             <a href="#" className="bg-black text-white text-[10px] font-bold py-1.5 px-3 rounded-lg text-center">🍎 App Store</a>
@@ -154,9 +154,9 @@ function Sidebar({ onGiftHunter }) {
             <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <div className="flex items-center gap-3">
                     <div className="flex-1 text-right">
-                        <h3 className="font-black text-sm text-gray-800 mb-1">اكتشف اروع الهدايا مع صياد الهدايا</h3>
-                        <p className="text-xs text-gray-500 leading-relaxed mb-3">اكتشف قوة الذكاء الاصطناعي مع هذا البوت الذي تم تصميمه خصيصاً لإيجاد الهدية المثالية!</p>
-                        <button onClick={onGiftHunter} className="bg-[#FF4081] text-white text-xs font-black px-4 py-2 rounded-xl w-full">جربه الآن</button>
+                        <h3 className="font-black text-sm text-gray-800 mb-1 text-center">مرحبا بك انا نوره</h3>
+                        <p className="text-xs text-gray-500 leading-relaxed mb-3">مساعدتك الذكية لإيجاد أفضل العروض والكوبونات</p>
+                        <button onClick={onGiftHunter} className="bg-[#FF4081] text-white text-xs font-black px-4 py-2 rounded-xl w-full">هيا نبدأ</button>
                     </div>
                     <div className="text-4xl shrink-0">🤖</div>
                 </div>
@@ -264,9 +264,9 @@ function ArticleContent({ article }) {
 
             {/* Why Almowafir */}
             <div className="rounded-2xl p-6 sm:p-8 text-right" style={{ background: 'linear-gradient(135deg, #E8F8F5 0%, #E8F5E9 100%)' }}>
-                <h2 className="text-xl font-black text-gray-800 mb-3">لماذا الموفر أفضل مكان لإيجاد الكوبونات؟</h2>
+                <h2 className="text-xl font-black text-gray-800 mb-3">لماذا المسوق أفضل مكان لإيجاد الكوبونات؟</h2>
                 <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                    يعمل فريق الموفر على مدار الساعة للتحقق من صحة جميع أكواد الخصم وتحديثها يومياً، لضمان حصولك دائماً على كوبونات فعالة وصالحة الاستخدام. كما نتفاوض مباشرة مع أشهر المتاجر لنوفر لك خصومات حصرية لا تجدها في أي مكان آخر.
+                    يعمل فريق المسوق على مدار الساعة للتحقق من صحة جميع أكواد الخصم وتحديثها يومياً، لضمان حصولك دائماً على كوبونات فعالة وصالحة الاستخدام. كما نتفاوض مباشرة مع أشهر المتاجر لنوفر لك خصومات حصرية لا تجدها في أي مكان آخر.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {[
@@ -351,7 +351,7 @@ export default function BlogPost() {
 
                             {/* User Reviews */}
                             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm text-right">
-                                <h2 className="text-xl font-black text-gray-800 mb-5">تقييمات حقيقية من مستخدمي تطبيق الموفر للكوبونات</h2>
+                                <h2 className="text-xl font-black text-gray-800 mb-5">تقييمات حقيقية من مستخدمي تطبيق المسوق للكوبونات</h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     {reviews.map((r, i) => (
                                         <ReviewCard key={i} review={r} />
@@ -361,7 +361,7 @@ export default function BlogPost() {
 
                             {/* Customer Service */}
                             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm text-right">
-                                <h2 className="text-xl font-black text-gray-800 mb-2">خدمة عملاء الموفر</h2>
+                                <h2 className="text-xl font-black text-gray-800 mb-2">خدمة عملاء المسوق</h2>
                                 <p className="text-sm text-gray-500 mb-5">إذا وجدت كود لا يعمل، لديك كود تود إضافته، أو ترغب في مشاركة ملاحظاتك، لا تتردد في التواصل معنا!</p>
                                 <div className="flex flex-wrap gap-3 justify-end">
                                     {[

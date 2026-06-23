@@ -19,7 +19,7 @@ const topStores = [
 
 const recentArticles = [
     { tag: 'الجمال والعناية', tagEn: 'BEAUTY',  title: 'تخفيضات سيفورا القادمة في 2025 – خصومات حتى 80% هذا العام',             color: '#E91E8C' },
-    { tag: 'سياحة وسفر',     tagEn: 'TRAVEL',  title: 'أكثر الدول سياحة في العالم أشهر 5 دول يارخص سعر زيارتها مع كوبونات الموفر', color: '#0079C1' },
+    { tag: 'سياحة وسفر',     tagEn: 'TRAVEL',  title: 'أكثر الدول سياحة في العالم أشهر 5 دول يارخص سعر زيارتها مع كوبونات المسوق', color: '#0079C1' },
     { tag: 'الأزياء',        tagEn: 'FASHION', title: 'نجامة تيرمال رجالي شبك وأشهر أماكن البيع بسعر خيالي',                   color: '#6B3A2A' },
     { tag: 'الجمال والعناية', tagEn: 'BEAUTY',  title: 'تخفيضات باث اند بودي 2025 – خصم حتى 80% على بعض المنتجات',              color: '#E91E8C' },
 ];
@@ -96,7 +96,7 @@ export default function Contact() {
                             <div className="bg-white rounded-2xl p-4 shadow-sm">
                                 <div className="flex items-center justify-between mb-3">
                                     <a href="/stores" className="text-xs text-[#00BFA5] hover:underline">كل المتاجر</a>
-                                    <h3 className="font-black text-gray-800">أفضل المتاجر</h3>
+                                    <h3 className="font-black text-gray-800">المتاجر العالمية</h3>
                                 </div>
                                 <div className="grid grid-cols-3 gap-2">
                                     {topStores.map((store, i) => (
@@ -113,8 +113,8 @@ export default function Contact() {
                                     <div className="flex items-start gap-3">
                                         <div className="text-4xl">📱</div>
                                         <div className="flex-1">
-                                            <h3 className="font-black text-gray-800 text-sm mb-1">احصل على تطبيق الموفر!</h3>
-                                            <p className="text-xs text-gray-500 mb-3">تقدم في المراحل واكسب وحدات الموفر - استبدل وحدات الموفر بقسائم شرائية مميزة!</p>
+                                            <h3 className="font-black text-gray-800 text-sm mb-1">احصل على تطبيق المسوق!</h3>
+                                            <p className="text-xs text-gray-500 mb-3">تقدم في المراحل واكسب وحدات المسوق - استبدل وحدات المسوق بقسائم شرائية مميزة!</p>
                                             <div className="flex gap-1.5">
                                                 <a href="#" className="bg-black text-white text-xs font-bold py-1.5 px-2.5 rounded-lg">🍎 App Store</a>
                                                 <a href="#" className="bg-black text-white text-xs font-bold py-1.5 px-2.5 rounded-lg">▶ Google Play</a>
@@ -125,9 +125,9 @@ export default function Contact() {
                                 <div className="flex items-start gap-3">
                                     <div className="text-4xl">🎁</div>
                                     <div className="flex-1">
-                                        <h3 className="font-black text-gray-800 text-sm mb-1">اكتشف اروع الهدايا مع صياد الهدايا</h3>
+                                        <h3 className="font-black text-gray-800 text-sm mb-1 text-center">مرحبا بك انا نوره</h3>
                                         <p className="text-xs text-gray-500 mb-3">اكتشف قوة الذكاء الاصطناعي مع هذا البوت الذي ام تم تصميمه خصيصاً لإيجاد الهدية المثالية!</p>
-                                        <button onClick={() => setShowGH(true)} className="inline-block bg-[#FF4081] text-white text-xs font-bold py-2 px-4 rounded-full">جربه الآن</button>
+                                        <button onClick={() => setShowGH(true)} className="inline-block bg-[#FF4081] text-white text-xs font-bold py-2 px-4 rounded-full">هيا نبدأ</button>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@ export default function Contact() {
 
                             {/* Reviews */}
                             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
-                                <h3 className="font-black text-gray-800 mb-4 leading-snug">تقييمات حقيقية من مستخدمي تطبيق الموفر للكوبونات</h3>
+                                <h3 className="font-black text-gray-800 mb-4 leading-snug">تقييمات حقيقية من مستخدمي تطبيق المسوق للكوبونات</h3>
                                 <div className="grid grid-cols-2 gap-3">
                                     {reviews.map((r, i) => (
                                         <div key={i} className="bg-gray-50 rounded-xl p-3">
@@ -179,8 +179,8 @@ export default function Contact() {
 
                             {/* Customer Service */}
                             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
-                                <h3 className="font-black text-gray-800 mb-2">خدمة عملاء الموفر</h3>
-                                <p className="text-xs text-gray-500 mb-4 leading-relaxed">إذا وجدت كود لا يعمل، أو ترغب في مشاركة ملاحظاتك، لا تتردد في التواصل معنا عبر البريد الإلكتروني أو الانضمام إلى مجموعة محبي الموفر!</p>
+                                <h3 className="font-black text-gray-800 mb-2">خدمة عملاء المسوق</h3>
+                                <p className="text-xs text-gray-500 mb-4 leading-relaxed">إذا وجدت كود لا يعمل، أو ترغب في مشاركة ملاحظاتك، لا تتردد في التواصل معنا عبر البريد الإلكتروني أو الانضمام إلى مجموعة محبي المسوق!</p>
                                 <div className="grid grid-cols-4 gap-2">
                                     {[
                                         { icon: '✉️', label: 'البريد الإلكتروني' },
@@ -198,12 +198,12 @@ export default function Contact() {
 
                             {/* Stats */}
                             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
-                                <h3 className="font-black text-gray-800 mb-3">وفّر المال من خلال موقع الموفر™ مصر.</h3>
+                                <h3 className="font-black text-gray-800 mb-3">وفّر المال من خلال موقع المسوق™ مصر.</h3>
                                 {[
-                                    { icon: '🏷️', num: '854',    label: 'كوبونات الخصم وعروض التخفيضات المتاحة على موقع الموفر™.' },
-                                    { icon: '🛍️', num: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع الموفر™.' },
-                                    { icon: '👥', num: '9,312',  label: 'عدد الموفرين الشهري عبر موقع الموفر™.' },
-                                    { icon: '💸', num: '15.32%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها مستخدمو موقع الموفر™.' },
+                                    { icon: '🏷️', num: '854',    label: 'كوبونات الخصم وعروض التخفيضات المتاحة على موقع المسوق™.' },
+                                    { icon: '🛍️', num: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع المسوق™.' },
+                                    { icon: '👥', num: '9,312',  label: 'عدد المسوقين الشهري عبر موقع المسوق™.' },
+                                    { icon: '💸', num: '15.32%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها مستخدمو موقع المسوق™.' },
                                 ].map((s, i) => (
                                     <div key={i} className="flex items-start gap-3 mb-3">
                                         <span className="text-xl shrink-0">{s.icon}</span>
@@ -226,7 +226,7 @@ export default function Contact() {
                                     فريق العمل يعمل على مدار الساعة للرد على استفساراتكم واستقبال اقتراحاتكم
                                 </h2>
                                 <p className="text-sm text-gray-500 leading-relaxed">
-                                    سواء اكتشفت كود خصم لا يعمل، أو تريد اقتراح متجر جديد، أو لديك سؤال عن التطبيق، أو مجرد تريد التواصل معنا – فريق الموفر هنا من أجلك. نحن نشر حقيقيون نحب مساعدة مجتمعنا على التوفير أكثر، ونأخذ كل رسالة بجدية تامة.
+                                    سواء اكتشفت كود خصم لا يعمل، أو تريد اقتراح متجر جديد، أو لديك سؤال عن التطبيق، أو مجرد تريد التواصل معنا – فريق المسوق هنا من أجلك. نحن نشر حقيقيون نحب مساعدة مجتمعنا على التوفير أكثر، ونأخذ كل رسالة بجدية تامة.
                                 </p>
                             </div>
 
@@ -244,12 +244,12 @@ export default function Contact() {
                                 <HelpItem
                                     icon="🏪"
                                     title="متجرك المفضل غير موجود؟"
-                                    desc="لم تجد علامتك التجارية المفضلة على الموفر؟ راسلنا وسيبذل جهدنا قصارى لإضافتها إلى قائمتنا التي تضم أكثر من 1,000 متجر."
+                                    desc="لم تجد علامتك التجارية المفضلة على المسوق؟ راسلنا وسيبذل جهدنا قصارى لإضافتها إلى قائمتنا التي تضم أكثر من 1,000 متجر."
                                 />
                                 <HelpItem
                                     icon="💡"
                                     title="لديك ملاحظة أو اقتراح؟"
-                                    desc="نحن دائماً نتحسن. أفكارك تساعدنا على بناء تجربة أفضل لمجتمع الموفر بأكمله."
+                                    desc="نحن دائماً نتحسن. أفكارك تساعدنا على بناء تجربة أفضل لمجتمع المسوق بأكمله."
                                 />
                                 <HelpItem
                                     icon="❤️"

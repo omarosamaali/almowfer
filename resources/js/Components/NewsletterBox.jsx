@@ -16,7 +16,7 @@ export default function NewsletterBox() {
                     <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center text-3xl animate-bounce">🎉</div>
                     <p className="font-black text-lg">مبروك!</p>
                     <p className="text-sm opacity-90 leading-relaxed">
-                        لقد تم إضافة بريدك الإلكتروني إلى قائمة الموفر البريدية.
+                        لقد تم إضافة بريدك الإلكتروني إلى قائمة المسوق البريدية.
                     </p>
                     <p className="text-xs opacity-75">ستصلك أفضل العروض والكوبونات الحصرية قريباً 💌</p>
                 </div>
@@ -24,7 +24,7 @@ export default function NewsletterBox() {
                 <>
                     <div className="text-right mb-3">
                         <div className="text-2xl mb-1">✉️✉️</div>
-                        <h3 className="font-extrabold text-base sm:text-lg">إشترك في قائمة الموفر البريدية</h3>
+                        <h3 className="font-extrabold text-base sm:text-lg">إشترك في قائمة المسوق البريدية</h3>
                         <p className="text-sm opacity-90 mt-1">احصل على عروض وكوبونات حصرية مباشرة على بريدك الالكتروني</p>
                     </div>
                     <div className="flex">

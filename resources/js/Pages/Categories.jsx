@@ -214,7 +214,7 @@ const topStores = [
 
 const articles = [
     { tag: 'الجمال والعناية', title: 'تخفيضات سيفورا القادمة في 2025 – خصومات حتى 80% هذا العام', img: null },
-    { tag: 'سياحة وسفر', title: 'أكثر 10 دول سياحة في العالم أشهر 5 دول يارخص سعر زيارتها مع كوبونات الموفر', img: null },
+    { tag: 'سياحة وسفر', title: 'أكثر 10 دول سياحة في العالم أشهر 5 دول يارخص سعر زيارتها مع كوبونات المسوق', img: null },
     { tag: 'الأزياء', title: 'نجامة تيرمال رجالي شبك وأشهر أماكن البيع بسعر خيالي', img: null },
 ];
 
@@ -340,7 +340,7 @@ export default function Categories() {
                             <div className="bg-white rounded-2xl p-4 shadow-sm">
                                 <div className="flex items-center justify-between mb-3">
                                     <a href="/stores" className="text-xs text-[#00BFA5] hover:underline">كل المتاجر</a>
-                                    <h3 className="font-black text-gray-800">أفضل المتاجر</h3>
+                                    <h3 className="font-black text-gray-800">المتاجر العالمية</h3>
                                 </div>
                                 <div className="grid grid-cols-3 gap-2">
                                     {topStores.map((store, i) => (
@@ -357,8 +357,8 @@ export default function Categories() {
                                     <div className="text-4xl">📱</div>
                                     <div className="flex-1">
                                         <h3 className="font-black text-gray-800 mb-1">تسوق كالمحترفين</h3>
-                                        <p className="font-bold text-gray-800 text-sm mb-1">احصل على تطبيق الموفر!</p>
-                                        <p className="text-xs text-gray-500 mb-3">تقدم في المراحل واكسب وحدات الموفر - استبدل وحدات الموفر بقسائم شرائية مميزة!</p>
+                                        <p className="font-bold text-gray-800 text-sm mb-1">احصل على تطبيق المسوق!</p>
+                                        <p className="text-xs text-gray-500 mb-3">تقدم في المراحل واكسب وحدات المسوق - استبدل وحدات المسوق بقسائم شرائية مميزة!</p>
                                         <div className="flex flex-col gap-1.5">
                                             <a href="#" className="bg-black text-white text-xs font-bold py-1.5 px-3 rounded-lg flex items-center gap-2 justify-center">
                                                 🍎 App Store
@@ -374,7 +374,7 @@ export default function Categories() {
                             {/* Chrome Extension */}
                             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
                                 <h3 className="font-black text-gray-800 mb-1">وفّر بسهولة</h3>
-                                <p className="text-sm text-gray-500 mb-3">لا تفوت الخصومات مرة أخرى! ميزة الموفر على كروم تعثر على الخصومات وتطبقها تلقائياً.</p>
+                                <p className="text-sm text-gray-500 mb-3">لا تفوت الخصومات مرة أخرى! ميزة المسوق على كروم تعثر على الخصومات وتطبقها تلقائياً.</p>
                                 <div className="flex items-center gap-3">
                                     <a href="#" className="bg-[#00BFA5] hover:bg-[#009e87] text-white text-sm font-bold py-2 px-4 rounded-xl transition-colors">
                                         + أضف إلى كروم
@@ -406,8 +406,8 @@ export default function Categories() {
 
                             {/* Customer Service */}
                             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
-                                <h3 className="font-black text-gray-800 mb-2">خدمة عملاء الموفر</h3>
-                                <p className="text-sm text-gray-500 mb-4">إذا وجدت كود لا يعمل، أو ترغب في مشاركة ملاحظاتك، لا تتردد في التواصل معنا عبر البريد الإلكتروني أو الانضمام إلى مجموعة محبي الموفر!</p>
+                                <h3 className="font-black text-gray-800 mb-2">خدمة عملاء المسوق</h3>
+                                <p className="text-sm text-gray-500 mb-4">إذا وجدت كود لا يعمل، أو ترغب في مشاركة ملاحظاتك، لا تتردد في التواصل معنا عبر البريد الإلكتروني أو الانضمام إلى مجموعة محبي المسوق!</p>
                                 <div className="grid grid-cols-4 gap-2">
                                     {[
                                         { icon: '✉️', label: 'البريد الإلكتروني' },
@@ -425,12 +425,12 @@ export default function Categories() {
 
                             {/* Stats */}
                             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
-                                <h3 className="font-black text-gray-800 mb-3">وفّر المال من خلال موقع الموفر™ مصر.</h3>
+                                <h3 className="font-black text-gray-800 mb-3">وفّر المال من خلال موقع المسوق™ مصر.</h3>
                                 {[
-                                    { icon: '🏷️', num: '854', label: 'كوبونات الخصم وعروض التخفيضات المتاحة على موقع الموفر™.' },
-                                    { icon: '🛍️', num: '1,255', label: 'المتاجر التي تقدم كوبونات وعروض على موقع الموفر™.' },
-                                    { icon: '👥', num: '9,312', label: 'عدد الموفرين الشهري عبر موقع الموفر™.' },
-                                    { icon: '💸', num: '15.32%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها مستخدمو موقع الموفر™.' },
+                                    { icon: '🏷️', num: '854', label: 'كوبونات الخصم وعروض التخفيضات المتاحة على موقع المسوق™.' },
+                                    { icon: '🛍️', num: '1,255', label: 'المتاجر التي تقدم كوبونات وعروض على موقع المسوق™.' },
+                                    { icon: '👥', num: '9,312', label: 'عدد المسوقين الشهري عبر موقع المسوق™.' },
+                                    { icon: '💸', num: '15.32%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها مستخدمو موقع المسوق™.' },
                                 ].map((s, i) => (
                                     <div key={i} className="flex items-start gap-3 mb-3">
                                         <span className="text-xl shrink-0">{s.icon}</span>

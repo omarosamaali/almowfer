@@ -44,7 +44,7 @@ const featuredArticles = [
     {
         slug: 'weekly-shopping-list-2026',
         tag: 'طعام', tagEn: 'FOOD',
-        title: 'قائمة مشتريات المنزل الأسبوعية 2026 بأرخص سعر مع الموفر',
+        title: 'قائمة مشتريات المنزل الأسبوعية 2026 بأرخص سعر مع المسوق',
         img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80&fit=crop&auto=format',
     },
     {
@@ -96,8 +96,8 @@ const categoryArticleSections = [
     {
         name: 'الأزياء', icon: '👗',
         articles: [
-            { slug: 'abayas-black-friday',    title: 'تسوقي عبايات رخيصة خلال الجمعة السوداء مع كوبونات الموفر',    img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80&fit=crop&auto=format' },
-            { slug: 'winter-evening-dresses', title: 'فساتين سهرة شتوية بأرخص الأسعار مع كوبونات الموفر',            img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'abayas-black-friday',    title: 'تسوقي عبايات رخيصة خلال الجمعة السوداء مع كوبونات المسوق',    img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'winter-evening-dresses', title: 'فساتين سهرة شتوية بأرخص الأسعار مع كوبونات المسوق',            img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop&auto=format' },
             { slug: 'hijab-fashion-models',   title: 'دريسات فساتين محجبات خروج تفصيل – 8 موديلات فخمة',             img: 'https://images.unsplash.com/photo-1523381210434-271e8be8a52b?w=800&q=80&fit=crop&auto=format' },
         ]
     },
@@ -106,13 +106,13 @@ const categoryArticleSections = [
         articles: [
             { slug: 'save-money-groceries-2026', title: 'أفكار عن ادخار المال عند تسوق البقالة في 2026',                  img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800&q=80&fit=crop&auto=format' },
             { slug: 'lunch-box-guide',           title: 'تعرف على أفضل 5 أنواع لانش بوكس "lunch box" للأطفال والكبار',   img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80&fit=crop&auto=format' },
-            { slug: 'ramadan-groceries',         title: 'اغراض رمضان المهمة مشتريات طازجة مع كوبونات الموفر',             img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'ramadan-groceries',         title: 'اغراض رمضان المهمة مشتريات طازجة مع كوبونات المسوق',             img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&fit=crop&auto=format' },
         ]
     },
     {
         name: 'رياضة', icon: '🏋️',
         articles: [
-            { slug: 'home-gym-equipment',    title: 'أفضل أجهزة الجيم المنزلية بأسعار مناسبة مع الموفر',         img: 'https://images.unsplash.com/photo-1534438327980-b54ba3e57b3e?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'home-gym-equipment',    title: 'أفضل أجهزة الجيم المنزلية بأسعار مناسبة مع المسوق',         img: 'https://images.unsplash.com/photo-1534438327980-b54ba3e57b3e?w=800&q=80&fit=crop&auto=format' },
             { slug: 'sports-brands-coupons', title: 'كوبونات خصم ماركات الملابس الرياضية نايكي وأديداس 2026',       img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80&fit=crop&auto=format' },
         ]
     },
@@ -121,7 +121,7 @@ const categoryArticleSections = [
         articles: [
             { slug: 'kids-educational-toys-2026', title: 'أفضل ألعاب الأطفال التعليمية لعام 2026 مع أكواد خصم',          img: 'https://images.unsplash.com/photo-1515488042361-ee00e41feb1b?w=800&q=80&fit=crop&auto=format' },
             { slug: 'newborn-essentials',          title: 'مستلزمات المولود الجديد الضرورية بأرخص الأسعار',               img: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&q=80&fit=crop&auto=format' },
-            { slug: 'kids-branded-clothes',        title: 'ملابس أطفال ماركة بكوبونات خصم حصرية من الموفر',               img: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'kids-branded-clothes',        title: 'ملابس أطفال ماركة بكوبونات خصم حصرية من المسوق',               img: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&q=80&fit=crop&auto=format' },
         ]
     },
     {
@@ -129,7 +129,7 @@ const categoryArticleSections = [
         articles: [
             { slug: 'home-furniture-deals-2026',       title: 'أفضل عروض أثاث المنزل وديكورات 2026 بأقل الأسعار',            img: 'https://images.unsplash.com/photo-1555041469-db74d4fe0d15?w=800&q=80&fit=crop&auto=format' },
             { slug: 'home-appliances-black-friday', title: 'أجهزة منزلية بخصومات تصل 50% خلال الجمعة السوداء', img: 'https://images.unsplash.com/photo-1555041469-db74d4fe0d15?w=800&q=80&fit=crop&auto=format' },
-            { slug: 'home-decoration-tips',            title: 'كيف تزين منزلك باحترافية بميزانية محدودة مع كوبونات الموفر',   img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'home-decoration-tips',            title: 'كيف تزين منزلك باحترافية بميزانية محدودة مع كوبونات المسوق',   img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80&fit=crop&auto=format' },
         ]
     },
     {
@@ -137,7 +137,7 @@ const categoryArticleSections = [
         articles: [
             { slug: 'health-vitamins-online',    title: 'أفضل مواقع شراء الفيتامينات والمكملات الغذائية أونلاين',        img: 'https://images.unsplash.com/photo-1505576399279-6e9a94c2f5e7?w=800&q=80&fit=crop&auto=format' },
             { slug: 'pharmacy-online-coupons',   title: 'كوبونات خصم صيدليات أونلاين موثوقة في السعودية 2026',           img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80&fit=crop&auto=format' },
-            { slug: 'health-care-products-tips', title: 'نصائح لشراء منتجات العناية الصحية بأقل تكلفة مع الموفر',        img: 'https://images.unsplash.com/photo-1559181567-c3190eba4d98?w=800&q=80&fit=crop&auto=format' },
+            { slug: 'health-care-products-tips', title: 'نصائح لشراء منتجات العناية الصحية بأقل تكلفة مع المسوق',        img: 'https://images.unsplash.com/photo-1559181567-c3190eba4d98?w=800&q=80&fit=crop&auto=format' },
         ]
     },
 ];
@@ -249,7 +249,7 @@ export default function Blog() {
                         <span className="text-gray-700 font-medium">المدونة</span>
                     </div>
 
-                    <h1 className="text-2xl sm:text-3xl font-black text-gray-800 mb-6 text-right">مدونة الموفر للخصومات</h1>
+                    <h1 className="text-2xl sm:text-3xl font-black text-gray-800 mb-6 text-right">مدونة المسوق للخصومات</h1>
 
                     {/* Category filter pills */}
                     <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-2 mb-8 flex-row-reverse">

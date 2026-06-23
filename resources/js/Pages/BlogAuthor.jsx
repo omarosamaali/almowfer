@@ -71,7 +71,7 @@ function Sidebar({ onGiftHunter }) {
             <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                     <Link href="/stores" className="text-xs text-[#00BFA5]">كل المتاجر</Link>
-                    <h3 className="font-black text-sm text-gray-800">أفضل المتاجر</h3>
+                    <h3 className="font-black text-sm text-gray-800">المتاجر العالمية</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                     {sideStores.map((s, i) => (
@@ -87,7 +87,7 @@ function Sidebar({ onGiftHunter }) {
                 <h3 className="font-black text-sm text-gray-800 text-right mb-3">تسوق كالمحترفين</h3>
                 <div className="flex items-center gap-3">
                     <div className="flex flex-col gap-2 flex-1 text-right">
-                        <p className="font-black text-sm text-gray-800 leading-snug">احصل على تطبيق الموفر!</p>
+                        <p className="font-black text-sm text-gray-800 leading-snug">احصل على تطبيق المسوق!</p>
                         <p className="text-xs text-gray-500 leading-relaxed">تقدم في المراحل واكسب الوحدات واستبدلها بقسائم شرائية مميزة!</p>
                         <div className="flex flex-col gap-1.5 mt-1">
                             <a href="#" className="bg-black text-white text-[10px] font-bold py-1.5 px-3 rounded-lg text-center">🍎 App Store</a>
@@ -102,9 +102,9 @@ function Sidebar({ onGiftHunter }) {
             <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <div className="flex items-center gap-3">
                     <div className="flex-1 text-right">
-                        <h3 className="font-black text-sm text-gray-800 mb-1">اكتشف اروع الهدايا مع صياد الهدايا</h3>
-                        <p className="text-xs text-gray-500 leading-relaxed mb-3">اكتشف قوة الذكاء الاصطناعي مع هذا البوت الذي تم تصميمه خصيصاً لإيجاد الهدية المثالية!</p>
-                        <button onClick={onGiftHunter} className="bg-[#FF4081] text-white text-xs font-black px-4 py-2 rounded-xl w-full">جربه الآن</button>
+                        <h3 className="font-black text-sm text-gray-800 mb-1 text-center">مرحبا بك انا نوره</h3>
+                        <p className="text-xs text-gray-500 leading-relaxed mb-3">مساعدتك الذكية لإيجاد أفضل العروض والكوبونات</p>
+                        <button onClick={onGiftHunter} className="bg-[#FF4081] text-white text-xs font-black px-4 py-2 rounded-xl w-full">هيا نبدأ</button>
                     </div>
                     <div className="text-4xl shrink-0">🤖</div>
                 </div>

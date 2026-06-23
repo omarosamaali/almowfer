@@ -69,11 +69,11 @@ const catStores = [
 ];
 
 const faqs = [
-    { q: 'ما هي أفضل المتاجر للحصول على كوبونات العاب الفيديو؟',       a: 'أفضل المتاجر للحصول على عروض وكوبونات العاب الفيديو هي نون ومصر، أمازون، فيرجن ميجاستور، جرير، ورايا شوب. يمكنك إيجاد أحدث الكوبونات لهذه المتاجر على موقع الموفر.' },
+    { q: 'ما هي المتاجر العالمية للحصول على كوبونات العاب الفيديو؟',       a: 'المتاجر العالمية للحصول على عروض وكوبونات العاب الفيديو هي نون ومصر، أمازون، فيرجن ميجاستور، جرير، ورايا شوب. يمكنك إيجاد أحدث الكوبونات لهذه المتاجر على موقع المسوق.' },
     { q: 'كيف احصل على خصم على العاب PS5؟',                             a: 'استخدم كود خصم نون مصر (ALM1) للحصول على خصم 10% إضافي على ألعاب PS5 من متجر نون، أو تصفح عروض فيرجن ميجاستور وأمازون للحصول على أفضل الأسعار.' },
     { q: 'هل يمكنني الحصول على كوبون خصم على Xbox Game Pass؟',          a: 'نعم، يمكنك الحصول على عروض Xbox Game Pass عبر منصة مايكروسوفت الرسمية، كما تجد أفضل العروض المجمعة على الأجهزة والاشتراكات في متاجر نون وجرير.' },
     { q: 'ما هو كود خصم نون للعاب الفيديو؟',                            a: 'كود خصم نون الأفضل للعاب الفيديو هو (ALM1) ويمنحك خصم 10% إضافي على كل مشتريات الألعاب والأجهزة من موقع Noon مصر.' },
-    { q: 'هل تتوفر عروض موسمية على العاب الفيديو؟',                     a: 'نعم، تتوفر عروض موسمية كبيرة على ألعاب الفيديو في موسم الصيف، وعروض بلاك فرايداي، وعروض اليوم الوطني. تابع موقع الموفر لأحدث العروض.' },
+    { q: 'هل تتوفر عروض موسمية على العاب الفيديو؟',                     a: 'نعم، تتوفر عروض موسمية كبيرة على ألعاب الفيديو في موسم الصيف، وعروض بلاك فرايداي، وعروض اليوم الوطني. تابع موقع المسوق لأحدث العروض.' },
 ];
 
 const reviews = [
@@ -87,7 +87,7 @@ const stats = [
     { icon: '🎮', value: '47',    label: 'كوبون وعرض للعاب الفيديو' },
     { icon: '🏪', value: '18',    label: 'متجر يقدم عروض على الألعاب' },
     { icon: '💰', value: '12.5%', label: 'متوسط نسبة الخصم على الألعاب' },
-    { icon: '👥', value: '3,240', label: 'متسوق وفّر عبر الموفر هذا الشهر' },
+    { icon: '👥', value: '3,240', label: 'متسوق وفّر عبر المسوق هذا الشهر' },
 ];
 
 // ==================== COMPONENTS ====================
@@ -265,7 +265,7 @@ function Sidebar() {
 
             {/* App promo */}
             <div className="bg-linear-to-br from-[#6C3FC5] to-[#00BFA5] rounded-2xl p-5 text-white text-right">
-                <p className="font-black text-base mb-1">📱 حمّل تطبيق الموفر</p>
+                <p className="font-black text-base mb-1">📱 حمّل تطبيق المسوق</p>
                 <p className="text-xs opacity-90 mb-3 leading-relaxed">احصل على إشعارات فورية بأحدث عروض الألعاب!</p>
                 <div className="flex gap-2">
                     <button className="flex-1 bg-black/30 hover:bg-black/40 text-white text-xs font-bold py-2 rounded-xl transition-colors">App Store</button>
@@ -325,7 +325,7 @@ export default function CategoryDetail() {
                         <nav className="text-xs text-white/70 mb-4 flex items-center gap-1.5 flex-wrap">
                             <a href="/" className="hover:text-white transition-colors">الصفحة الرئيسية</a>
                             <span>\</span>
-                            <a href="/categories" className="hover:text-white transition-colors">كل الفئات</a>
+                            <a href="/categories" className="hover:text-white transition-colors">جميع الفئات</a>
                             <span>\</span>
                             <a href={`/category/${category.parentSlug}`} className="hover:text-white transition-colors">{category.parent}</a>
                             <span>\</span>
@@ -387,10 +387,10 @@ export default function CategoryDetail() {
                             <article className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-right prose-custom">
 
                                 <h2 className="font-black text-gray-900 text-xl mb-4">
-                                    دليل الموفر الشامل لكوبونات وعروض {category.name} 2026
+                                    دليل المسوق الشامل لكوبونات وعروض {category.name} 2026
                                 </h2>
                                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                                    يُقدّم موقع الموفر™ أحدث وأفضل كوبونات وأكواد خصم العاب الفيديو من أشهر المتاجر الإلكترونية في مصر والوطن العربي. إذا كنت من عشاق الجيمينج وتبحث عن طرق لتوفير المال عند شراء الألعاب والأجهزة والإكسسوارات، فأنت في المكان الصحيح.
+                                    يُقدّم موقع المسوق™ أحدث وأفضل كوبونات وأكواد خصم العاب الفيديو من أشهر المتاجر الإلكترونية في مصر والوطن العربي. إذا كنت من عشاق الجيمينج وتبحث عن طرق لتوفير المال عند شراء الألعاب والأجهزة والإكسسوارات، فأنت في المكان الصحيح.
                                 </p>
 
                                 <h2 className="font-black text-gray-900 text-lg mb-3">
@@ -420,7 +420,7 @@ export default function CategoryDetail() {
                                     <li className="flex gap-2"><span className="text-[#6C3FC5] shrink-0">2.</span><span>تابع عروض الفلاش والصفقات اليومية في نون وأمازون لأقل الأسعار</span></li>
                                     <li className="flex gap-2"><span className="text-[#6C3FC5] shrink-0">3.</span><span>قارن الأسعار بين المتاجر المختلفة قبل الشراء للتأكد من أفضل صفقة</span></li>
                                     <li className="flex gap-2"><span className="text-[#6C3FC5] shrink-0">4.</span><span>اشترك في النشرة البريدية للموفر لتلقي إشعارات فورية بأحدث العروض</span></li>
-                                    <li className="flex gap-2"><span className="text-[#6C3FC5] shrink-0">5.</span><span>استخدم إضافة الموفر لمتصفح كروم للحصول على الكوبونات تلقائياً عند الدفع</span></li>
+                                    <li className="flex gap-2"><span className="text-[#6C3FC5] shrink-0">5.</span><span>استخدم إضافة المسوق لمتصفح كروم للحصول على الكوبونات تلقائياً عند الدفع</span></li>
                                 </ul>
 
                                 <h2 className="font-black text-gray-900 text-lg mb-3">

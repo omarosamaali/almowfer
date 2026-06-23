@@ -19,7 +19,7 @@ const stores = [
 ];
 
 const categories = [
-    { name: 'كل الفئات',         icon: '🔲', slug: 'all'          },
+    { name: 'جميع الفئات',         icon: '🔲', slug: 'all'          },
     { name: 'فنادق',              icon: '🏨', slug: 'hotels'       },
     { name: 'عطور',               icon: '🧴', slug: 'perfumes'     },
     { name: 'العاب الفيديو',      icon: '🎮', slug: 'gaming'       },
@@ -76,19 +76,19 @@ const reviews = [
 ];
 
 const stats = [
-    { icon: '🏷️', value: '858',    label: 'كوبونات الخصم والعروض المتاحة على موقع الموفر™' },
-    { icon: '🛒', value: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع الموفر™' },
-    { icon: '👥', value: '10,782', label: 'عدد الموفرين الشهري عبر موقع الموفر™' },
+    { icon: '🏷️', value: '858',    label: 'كوبونات الخصم والعروض المتاحة على موقع المسوق™' },
+    { icon: '🛒', value: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع المسوق™' },
+    { icon: '👥', value: '10,782', label: 'عدد المسوقين الشهري عبر موقع المسوق™' },
     { icon: '💰', value: '15.37%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها المستخدمون' },
 ];
 
 const faqItems = [
-    { q: 'ما هو أفضل موقع خصومات؟',                                              a: 'الموفر هو أفضل موقع كوبونات خصم للمتاجر الإلكترونية والماركات ومنصات التسوق في العالم العربي وحول العالم الذي يضمن لك توفير المزيد من المال عند التسوق أونلاين.' },
-    { q: 'هل الموفر هو موقع كوبونات موثوق؟',                                      a: 'نعم، جميع أكواد الخصم والكوبونات التي نقدمها لك مضمونة 100%. عليك التأكد من مراجعة شروط وأحكام كل كود خصم عبر عرض تفاصيل بطاقة الكوبون.' },
+    { q: 'ما هو أفضل موقع خصومات؟',                                              a: 'المسوق هو أفضل موقع كوبونات خصم للمتاجر الإلكترونية والماركات ومنصات التسوق في العالم العربي وحول العالم الذي يضمن لك توفير المزيد من المال عند التسوق أونلاين.' },
+    { q: 'هل المسوق هو موقع كوبونات موثوق؟',                                      a: 'نعم، جميع أكواد الخصم والكوبونات التي نقدمها لك مضمونة 100%. عليك التأكد من مراجعة شروط وأحكام كل كود خصم عبر عرض تفاصيل بطاقة الكوبون.' },
     { q: 'ما هي كوبونات الخصم وكيف يمكنني استخدامها؟',                            a: 'كوبونات الخصم تُعرف أيضاً بـ رموز الخصم أو أكواد الخصم وهي الكي نقدمها لك كي توفر المال عند التسوق من متاجر ومواقع التسوق عبر الإنترنت.' },
     { q: 'هل يمكنني استخدام كود الخصم أكثر من مرة؟',                              a: 'ذلك يتوقف على شروط وأحكام الكوبون، فهناك بعض الكوبونات التي يمكن استخدامها أكثر من مرة، في حين أن بعضها يصلح للاستخدام مرة واحدة فقط.' },
-    { q: 'هل جميع المتاجر الإلكترونية تتيح لي استخدام كوبونات خصم الموفر؟',      a: 'موقع الموفر يمنحك أكثر من 800 كود خصم لأشهر المتاجر الإلكترونية في عالمنا العربي وحول العالم.' },
-    { q: 'كيف احصل على خصم إضافي عند التسوق عبر الإنترنت؟',                       a: 'استخدم كوبونات خصم الموفر وأضف كوبون الموفر عند الدفع في ملخص سلة الشراء لتحقيق الخصم الإضافي.' },
+    { q: 'هل جميع المتاجر الإلكترونية تتيح لي استخدام كوبونات خصم المسوق؟',      a: 'موقع المسوق يمنحك أكثر من 800 كود خصم لأشهر المتاجر الإلكترونية في عالمنا العربي وحول العالم.' },
+    { q: 'كيف احصل على خصم إضافي عند التسوق عبر الإنترنت؟',                       a: 'استخدم كوبونات خصم المسوق وأضف كوبون المسوق عند الدفع في ملخص سلة الشراء لتحقيق الخصم الإضافي.' },
 ];
 
 // ==================== SUB COMPONENTS ====================
@@ -176,10 +176,18 @@ function CouponModal({ coupon, onClose }) {
 }
 
 function CouponCard({ coupon, onOpen }) {
+    const handleClick = () => {
+        if (coupon.btn === 'انسخ الكود') {
+            onOpen(coupon);
+        } else {
+            window.open(`https://${coupon.domain}`, '_blank', 'noopener,noreferrer');
+        }
+    };
+
     return (
         <div className="w-full h-full bg-white rounded-2xl border-2 border-dashed border-gray-200 p-3 sm:p-4 flex flex-col gap-2">
             <div className="flex items-center justify-between">
-                <button className="text-gray-400 text-xs border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-50 shrink-0">ℹ</button>
+                <a href={`/store/${coupon.slug}`} className="text-gray-400 text-xs border border-gray-200 rounded-lg px-2 py-0.5 hover:bg-gray-50 hover:text-[#00BFA5] transition-colors shrink-0">التفاصيل</a>
                 <span className="text-xs font-bold text-[#00BFA5] bg-[#E8F8F5] px-2 py-0.5 rounded-full flex items-center gap-1 truncate">
                     🤖 {coupon.badge}
                 </span>
@@ -189,10 +197,10 @@ function CouponCard({ coupon, onOpen }) {
             <div className="text-center font-bold text-sm text-gray-900 leading-snug">{coupon.discount}</div>
             <div className="text-center text-xs text-gray-500 leading-relaxed line-clamp-2">{coupon.desc}</div>
             <button
-                onClick={() => onOpen(coupon)}
+                onClick={handleClick}
                 className="mt-auto w-full bg-[#00BFA5] hover:bg-[#00A896] active:scale-95 text-white font-bold py-2 rounded-xl text-sm transition-all"
             >
-                {coupon.btn}
+                {coupon.btn === 'انسخ الكود' ? 'انسخ الكود' : 'معاينة'}
             </button>
         </div>
     );
@@ -237,7 +245,7 @@ function CouponsSection({ title, coupons, onOpen }) {
     return (
         <div className="mb-10">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg sm:text-xl font-extrabold text-gray-800">{title}</h2>
+                <h2 className="text-lg sm:text-xl font-extrabold text-gray-800 text-center">{title}</h2>
             </div>
 
             <div className="relative" ref={containerRef}>
@@ -306,18 +314,8 @@ export default function Home() {
 
     return (
         <MainLayout>
-            <Head title="الموفر: افضل موقع كوبونات خصم وخصومات 2026" />
+            <Head title="المسوق: افضل موقع كوبونات خصم وخصومات 2026" />
             <main className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
-
-                {/* Top Action Buttons */}
-                <div className="flex items-center justify-end gap-2 sm:gap-3 mb-4">
-                    <button className="flex items-center gap-1 sm:gap-2 bg-white border border-gray-200 rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium hover:shadow-md transition-shadow whitespace-nowrap">
-                        🧩 مكتشف الاكواد
-                    </button>
-                    <Link href="/stores" className="flex items-center gap-1 sm:gap-2 bg-white border border-gray-200 rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium hover:shadow-md transition-shadow whitespace-nowrap">
-                        🏪 جميع المتاجر
-                    </Link>
-                </div>
 
                 {/* Hero: Store Grid + Banner */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -325,8 +323,8 @@ export default function Home() {
                     {/* Store Grid */}
                     <div className="sm:w-56 lg:w-64 shrink-0 bg-white rounded-2xl p-3 sm:p-4 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                            <Link href="/stores" className="text-xs text-gray-500 hover:text-[#00BFA5] underline">كل المتاجر</Link>
-                            <h3 className="font-extrabold text-gray-800 text-sm sm:text-base">أفضل المتاجر</h3>
+                            <Link href="/stores" className="text-xs text-gray-500 hover:text-[#00BFA5] underline">الجميع</Link>
+                            <h3 className="font-extrabold text-gray-800 text-sm sm:text-base">المتاجر العالمية</h3>
                         </div>
                         <div className="grid grid-cols-3 gap-2">
                             {stores.map((store, i) => (
@@ -366,7 +364,7 @@ export default function Home() {
 
                 {/* Categories */}
                 <div className="bg-white rounded-2xl p-3 sm:p-4 mb-5 sm:mb-6 shadow-sm">
-                    <div className="flex gap-3 sm:gap-5 overflow-x-auto no-scrollbar">
+                    <div className="justify-center flex gap-3 sm:gap-5 overflow-x-auto no-scrollbar">
                         {categories.map((cat, i) => (
                             <a key={i} href={`/category/${cat.slug}`} className="flex flex-col items-center gap-1.5 min-w-14.5 sm:min-w-17 group">
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-100 group-hover:bg-[#E8F8F5] flex items-center justify-center text-xl sm:text-2xl transition-colors border-2 border-transparent group-hover:border-[#00BFA5]">
@@ -380,7 +378,7 @@ export default function Home() {
 
                 {/* Page Title */}
                 <h1 className="text-lg sm:text-xl lg:text-2xl font-black text-gray-900 text-center mb-6 sm:mb-8 px-2">
-                    الموفر: افضل موقع كوبونات خصم وخصومات 2026
+                    المسوق: افضل موقع كوبونات خصم وخصومات 2026
                 </h1>
 
                 {/* ===== 2-COLUMN LAYOUT ===== */}
@@ -389,8 +387,17 @@ export default function Home() {
                     {/* SIDEBAR */}
                     <aside className="w-full lg:w-72 lg:shrink-0 order-2 lg:order-1">
 
-                        {/* Email Subscribe */}
-                        <NewsletterBox />
+                        {/* AI Gift Finder */}
+                        <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm text-right">
+                            <div className="flex justify-center mb-2">
+                                <img src="/assets/helpdesk.gif" alt="صياد الهدايا" className="w-20 h-20 object-contain" />
+                            </div>
+                            <h3 className="font-extrabold text-gray-800 text-center">مرحبا بك انا نوره</h3>
+                            <p className="text-xs text-gray-500 mt-2 mb-3">مساعدتك الذكية لإيجاد أفضل العروض والكوبونات</p>
+                            <button onClick={() => setShowGH(true)} className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 rounded-xl text-sm transition-colors">
+                                هيا نبدأ
+                            </button>
+                        </div>
 
                         {/* App Download */}
                         <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm">
@@ -398,8 +405,8 @@ export default function Home() {
                                 <div className="text-4xl shrink-0">📱</div>
                                 <div className="text-right flex-1">
                                     <h3 className="font-extrabold text-gray-800">تسوق كالمحترفين</h3>
-                                    <p className="text-sm font-bold text-gray-700 mt-1">احصل على تطبيق الموفر!</p>
-                                    <p className="text-xs text-gray-500 mt-1">تقدم في المراحل واكسب الوحدات - استبدل وحدات الموفر بقسائم شرائية مميزة!</p>
+                                    <p className="text-sm font-bold text-gray-700 mt-1">احصل على تطبيق المسوق!</p>
+                                    <p className="text-xs text-gray-500 mt-1">تقدم في المراحل واكسب الوحدات - استبدل وحدات المسوق بقسائم شرائية مميزة!</p>
                                 </div>
                             </div>
                             <div className="flex gap-2">
@@ -408,24 +415,8 @@ export default function Home() {
                             </div>
                         </div>
 
-                        {/* AI Gift Finder */}
-                        <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm text-right">
-                            <div className="text-3xl mb-2">🎁🤖</div>
-                            <h3 className="font-extrabold text-gray-800">اكتشف اروع الهدايا مع صياد الهدايا</h3>
-                            <p className="text-xs text-gray-500 mt-2 mb-3">اكتشف قوة الذكاء الاصطناعي مع هذا البوت الذي تم تصميمه خصيصاً لإيجاد الهدية المثالية!</p>
-                            <button onClick={() => setShowGH(true)} className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 rounded-xl text-sm transition-colors">
-                                جربه الآن
-                            </button>
-                        </div>
-
-                        {/* Chrome Extension */}
-                        <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm text-right">
-                            <h3 className="font-extrabold text-gray-800">وفّر بسهولة</h3>
-                            <p className="text-xs text-gray-500 mt-2 mb-3">لا تفوت الخصومات مرة أخرى! مكتشف الموفر على كروم يعثر على الخصومات ويطبقها تلقائياً.</p>
-                            <button className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-xl text-sm transition-colors">
-                                + أضف إلى كروم
-                            </button>
-                        </div>
+                        {/* Email Subscribe */}
+                        <NewsletterBox />
 
                         {/* Latest Articles */}
                         <div className="bg-white rounded-2xl p-4 shadow-sm">
@@ -461,15 +452,15 @@ export default function Home() {
                 {/* ===== SEO CONTENT ===== */}
                 <section className="mt-8 bg-white rounded-2xl p-4 sm:p-8 shadow-sm text-right space-y-5">
                     <div>
-                        <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">كوبونات خصم وعروض الموفر 2026</h2>
+                        <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">كوبونات خصم وعروض المسوق 2026</h2>
                         <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">افضل موقع يعطيك كود خصم في العالم العربي</h3>
-                        <p className="text-sm text-gray-700 leading-relaxed">أهلاً وسهلاً بك في الموفر Almowafir، وهو عبارة عن أفضل موقع يعطيك كود خصم لتوفير المزيد من المال عند التسوق عبر الإنترنت مستفيداً من أقوى كوبونات وأكواد الخصم الحصرية.</p>
+                        <p className="text-sm text-gray-700 leading-relaxed">أهلاً وسهلاً بك في المسوق Almowafir، وهو عبارة عن أفضل موقع يعطيك كود خصم لتوفير المزيد من المال عند التسوق عبر الإنترنت مستفيداً من أقوى كوبونات وأكواد الخصم الحصرية.</p>
                     </div>
                     {[
-                        { title: 'ما هو موقع الموفر؟',                        text: 'موقع Almowafir هو أفضل موقع كوبونات خصم في العالم العربي، يساعدك على توفير المال المحقق عند التسوق عبر الإنترنت، حيث تجد فيه أي كود خصم أو كوبون خاص بالمتاجر الإلكترونية في دول الخليج والشرق الأوسط وحول العالم.' },
-                        { title: 'أهم موقع كوبون خصم',                        text: 'احصل على أقوى كوبون خصم لتحقق تخفيضات إضافية على كل عملية تسوق عبر الإنترنت، حيث يمكنك استخدام كود خصم الموفر في ملخص السلة لتطبيق الخصم الإضافي المقدم.' },
-                        { title: 'موقع كوبونات مجاني 100%',                   text: 'الموفر هو موقع كوبونات مجاني 100%، يقدم لك جميع الخدمات دون مقابل، ليضمن لك توفير المال المحقق في كل مرة تقوم فيها بالشراء عبر الإنترنت.' },
-                        { title: 'اكستنشن الموفر – مكتشف اكواد الخصم',       text: 'مكتشف اكواد الخصم من Almowafir هو اكستنشن كروم يقوم بالعثور لأجلك على كوبون الخصم الخاص بالمتجر الذي تقوم بالتسوق منه، ثم تطبيقه تلقائياً في ملخص سلة الشراء، بحيث لا تفوتك أي فرصة لتوفير المال عند التسوق أونلاين.' },
+                        { title: 'ما هو موقع المسوق؟',                        text: 'موقع Almowafir هو أفضل موقع كوبونات خصم في العالم العربي، يساعدك على توفير المال المحقق عند التسوق عبر الإنترنت، حيث تجد فيه أي كود خصم أو كوبون خاص بالمتاجر الإلكترونية في دول الخليج والشرق الأوسط وحول العالم.' },
+                        { title: 'أهم موقع كوبون خصم',                        text: 'احصل على أقوى كوبون خصم لتحقق تخفيضات إضافية على كل عملية تسوق عبر الإنترنت، حيث يمكنك استخدام كود خصم المسوق في ملخص السلة لتطبيق الخصم الإضافي المقدم.' },
+                        { title: 'موقع كوبونات مجاني 100%',                   text: 'المسوق هو موقع كوبونات مجاني 100%، يقدم لك جميع الخدمات دون مقابل، ليضمن لك توفير المال المحقق في كل مرة تقوم فيها بالشراء عبر الإنترنت.' },
+                        { title: 'اكستنشن المسوق – مكتشف اكواد الخصم',       text: 'مكتشف اكواد الخصم من Almowafir هو اكستنشن كروم يقوم بالعثور لأجلك على كوبون الخصم الخاص بالمتجر الذي تقوم بالتسوق منه، ثم تطبيقه تلقائياً في ملخص سلة الشراء، بحيث لا تفوتك أي فرصة لتوفير المال عند التسوق أونلاين.' },
                     ].map((s, i) => (
                         <div key={i}>
                             <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">{s.title}</h3>

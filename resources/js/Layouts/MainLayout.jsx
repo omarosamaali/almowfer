@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/react';
 
 const footerStores    = ['كود خصم نون', 'كود خصم تويو', 'كود خصم باث اند بودي', 'كود خصم سيفي', 'كود خصم ممزورلد', 'كود خصم بوكينج', 'كود خصم علي اكسبرس', 'كود خصم اي هيرب', 'كود خصم نمشي', 'كود خصم دكتور نيوتريشن'];
 const footerOccasions = ['جميع المتاجر', 'الأعياد والعطلات', 'عروض الجمعة السوداء', 'عروض الجمعة البيضاء', 'عروض اليوم الوطني الإماراتي', 'عروض اليوم الوطني السعودي', 'عروض رمضان', 'عيد الأضحى', 'أفضل مواقع حجز الطيران', 'أفضل لحجز الفنادق', 'اضافة كروم مكتشف الاكواد'];
-const footerInfo      = ['عن الموفر', 'اعلن مع الموفر', 'تواصل معنا', 'افصاح المعلن', 'الشروط والاحكام', 'سياسة الخصوصية', 'خريطة الموقع'];
+const footerInfo      = ['عن المسوق', 'اعلن مع المسوق', 'تواصل معنا', 'افصاح المعلن', 'الشروط والاحكام', 'سياسة الخصوصية', 'خريطة الموقع'];
 const socialLinks     = ['📌', '🎵', '✈️', '▶️', '📸', '📘', '✖️'];
 
 // ==================== COUNTRY SELECTOR ====================
@@ -114,9 +114,9 @@ function AppDownloadModal({ onClose }) {
 
                 {/* Text side */}
                 <div className="flex-1 text-right">
-                    <h3 className="font-black text-gray-900 text-base mb-1.5">احصل على تطبيق الموفر!</h3>
+                    <h3 className="font-black text-gray-900 text-base mb-1.5">احصل على تطبيق المسوق!</h3>
                     <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                        تقدم في المراحل واكسب الوحدات - استبدل وحدات الموفر بقسائم شرائية مميزة!
+                        تقدم في المراحل واكسب الوحدات - استبدل وحدات المسوق بقسائم شرائية مميزة!
                     </p>
                     <div className="flex flex-col gap-2">
                         <a
@@ -171,7 +171,7 @@ function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [appModalOpen,   setAppModalOpen]   = useState(false);
 
-    const navLinks = ['جميع المتاجر', 'جميع الفئات', 'المدونة', 'تواصل معنا', 'الشروط والاحكام', 'اعلن معنا', 'عن الموفر'];
+    const navLinks = ['جميع المتاجر', 'جميع الفئات', 'المدونة', 'تواصل معنا', 'الشروط والاحكام', 'اعلن معنا', 'عن المسوق'];
 
     return (
         <>
@@ -181,27 +181,11 @@ function Header() {
                 {/* Top Bar */}
                 <div className="flex items-center justify-between py-2 sm:py-3 gap-2 sm:gap-4">
 
-                    {/* Mobile: hamburger */}
-                    <button
-                        className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="القائمة"
-                    >
-                        <div className="w-5 h-0.5 bg-gray-600 mb-1"></div>
-                        <div className="w-5 h-0.5 bg-gray-600 mb-1"></div>
-                        <div className="w-5 h-0.5 bg-gray-600"></div>
-                    </button>
-
-                    {/* Desktop Left: Language + App */}
-                    <div className="hidden lg:flex items-center gap-4 shrink-0">
-                        <CountrySelector />
-                        <button
-                            onClick={() => setAppModalOpen(true)}
-                            className="flex items-center gap-1 text-sm text-gray-600 hover:text-[#00BFA5] transition-colors whitespace-nowrap"
-                        >
-                            <span>قم بتحميل تطبيق الموفر</span><span>🍎</span>
-                        </button>
-                    </div>
+                    {/* Logo */}
+                    <a href="/" className="flex items-center gap-2 shrink-0">
+                        <span className="text-lg sm:text-2xl font-black text-transparent bg-clip-text bg-linear-to-l from-[#00BFA5] to-[#4CAF50]">المُسوق</span>
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-linear-to-br from-[#00BFA5] to-[#4CAF50] flex items-center justify-center text-white font-bold text-base sm:text-lg">م</div>
+                    </a>
 
                     {/* Search */}
                     <div className="flex-1 max-w-xs sm:max-w-sm lg:max-w-xl">
@@ -217,15 +201,31 @@ function Header() {
                         </div>
                     </div>
 
-                    {/* Logo */}
-                    <a href="/" className="flex items-center gap-2 shrink-0">
-                        <span className="text-lg sm:text-2xl font-black text-transparent bg-clip-text bg-linear-to-l from-[#00BFA5] to-[#4CAF50]">المُوفر</span>
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-linear-to-br from-[#00BFA5] to-[#4CAF50] flex items-center justify-center text-white font-bold text-base sm:text-lg">م</div>
-                    </a>
+                    {/* Desktop Left: Language + App */}
+                    <div className="hidden lg:flex items-center gap-4 shrink-0">
+                        <CountrySelector />
+                        <button
+                            onClick={() => setAppModalOpen(true)}
+                            className="flex items-center gap-1 text-sm text-gray-600 hover:text-[#00BFA5] transition-colors whitespace-nowrap"
+                        >
+                            <span>قم بتحميل تطبيق المسوق</span><span>🍎</span>
+                        </button>
+                    </div>
+
+                    {/* Mobile: hamburger */}
+                    <button
+                        className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="القائمة"
+                    >
+                        <div className="w-5 h-0.5 bg-gray-600 mb-1"></div>
+                        <div className="w-5 h-0.5 bg-gray-600 mb-1"></div>
+                        <div className="w-5 h-0.5 bg-gray-600"></div>
+                    </button>
                 </div>
 
                 {/* Desktop Nav */}
-                <nav className="hidden lg:flex items-center justify-start gap-5 py-2 border-t border-gray-100">
+                <nav className="justify-center hidden lg:flex items-center gap-5 py-2 border-t border-gray-100">
                     {navLinks.map((link) => (
                         link === 'جميع المتاجر'
                             ? <Link key={link} href="/stores" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
@@ -239,7 +239,7 @@ function Header() {
                             ? <Link key={link} href="/terms" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
                         : link === 'اعلن معنا'
                             ? <Link key={link} href="/advertise" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'عن الموفر'
+                        : link === 'عن المسوق'
                             ? <Link key={link} href="/about" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
                             : <a key={link} href="#" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</a>
                     ))}
@@ -261,7 +261,7 @@ function Header() {
                                 ? <Link key={link} href="/terms" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
                             : link === 'اعلن معنا'
                                 ? <Link key={link} href="/advertise" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'عن الموفر'
+                            : link === 'عن المسوق'
                                 ? <Link key={link} href="/about" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
                                 : <a key={link} href="#" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</a>
                         ))}
@@ -312,7 +312,7 @@ function Footer() {
 
                     {/* Info */}
                     <div>
-                        <h3 className="font-bold text-gray-800 mb-3 sm:mb-4">معلومات الموفر</h3>
+                        <h3 className="font-bold text-gray-800 mb-3 sm:mb-4">معلومات المسوق</h3>
                         <ul className="space-y-1.5">
                             {footerInfo.map((item, i) => (
                                 <li key={i}><a href="#" className="text-xs sm:text-sm text-gray-600 hover:text-[#00BFA5] transition-colors">{item}</a></li>

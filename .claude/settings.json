@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Copy-Item \"f:\\\\almowfer\\\\.env.example\" \"f:\\\\almowfer\\\\.env\")"
+    ]
+  }
+}

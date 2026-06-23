@@ -24,69 +24,85 @@ const coupons = [
     {
         title: 'أقوى العروض: خصم حتى 80% + 10% إضافي',
         desc: 'أقوى عروض نون الحضرية خصم حتى 80% + كود خصم 10% إضافي',
-        badges: ['لا قود', 'جديد'],
-        used: 'آخر استخدام قبل 2 ساعات',
-        type: 'عرض',
+        discount: 'خصم حتى 80%',
+        badges: ['جديد', 'شحن مجاني', 'كوبون موثق'],
+        usedToday: 335, lastUsed: '8 ساعات', lastSaving: '12.5 جنيه',
+        type: 'تنزيلات',
         code: null,
     },
     {
-        title: 'الأفضل مبيعاً: خصم 80% + 10% إضافي',
-        desc: 'كود خصم نون 80% على أفضل المنتجات + 10% إضافي',
-        badges: ['الأكثر مبيعاً', 'جديد'],
-        used: 'آخر استخدام قبل 11 ساعة',
-        type: 'كود',
+        title: 'الأفضل مبيعاً: خصم 10% إضافي على كل الموقع',
+        desc: 'كود خصم نون 10% إضافي على أفضل المنتجات',
+        discount: 'كوبون 10%',
+        badges: ['الأكثر مبيعاً', 'كوبون موثق'],
+        usedToday: 54, lastUsed: '5 ساعات', lastSaving: '32.3 جنيه',
+        type: 'كوبون خصم',
         code: 'ALM1',
     },
     {
         title: 'الأجهزة الكهربائية: خصم 40% + 10% إضافي',
         desc: 'كود خصم نون 40% على الأجهزة الكهربائية + 10% إضافي',
-        badges: [],
-        used: null,
-        type: 'كود',
+        discount: 'خصم 40%',
+        badges: ['كوبون موثق'],
+        usedToday: 261, lastUsed: '6 ساعات', lastSaving: '15.7 جنيه',
+        type: 'كوبون خصم',
         code: 'ALM1',
     },
     {
         title: 'الأزياء: خصم 70% + 10% إضافي',
         desc: 'خصومات نون بنسبة 70% على الأزياء + 10% إضافي',
-        badges: [],
-        used: null,
-        type: 'كود',
-        code: 'ALM1',
+        discount: 'خصم 70%',
+        badges: ['عروض مميزة'],
+        usedToday: 288, lastUsed: '7 ساعات', lastSaving: '31.4 جنيه',
+        type: 'تنزيلات',
+        code: null,
     },
     {
         title: 'منتجات الجمال: خصم 60% + 10% إضافي',
-        desc: 'خصم نون 70% يصل إلى 60% على منتجات الجمال + 10% إضافي',
-        badges: ['الأكثر مبيعاً', 'جديد'],
-        used: 'آخر استخدام قبل 2 ساعات',
-        type: 'كود',
-        code: 'ALM1',
+        desc: 'خصم نون يصل إلى 60% على منتجات الجمال + 10% إضافي',
+        discount: 'تخفيض 10%',
+        badges: ['الأكثر مبيعاً', 'كوبون موثق'],
+        usedToday: 54, lastUsed: '11 ساعة', lastSaving: '4.9 جنيه',
+        type: 'كوبون خصم',
+        code: 'APP10',
     },
     {
         title: 'الموبايلات: خصم 60% + 10% إضافي',
         desc: 'خصم نون 2026 يصل إلى 60% على الموبايلات + 10% إضافي',
-        badges: [],
-        used: null,
-        type: 'كود',
-        code: 'ALM1',
+        discount: 'خصم 60%',
+        badges: ['عروض مميزة', 'كوبون موثق'],
+        usedToday: 294, lastUsed: '10 ساعات', lastSaving: '34.3 جنيه',
+        type: 'تنزيلات',
+        code: null,
     },
     {
         title: 'خصم 10% إضافي على كل الموقع',
         desc: 'كود خصم نون مصر بقيمة 10% إضافي على كل المنتجات',
-        badges: ['موصى به'],
-        used: 'آخر استخدام قبل 4 ساعات',
-        type: 'كود',
+        discount: 'خصم 10%',
+        badges: ['موصى به', 'كوبون موثق'],
+        usedToday: 242, lastUsed: '9 ساعات', lastSaving: '37.2 جنيه',
+        type: 'كوبون خصم',
         code: 'ALM1',
     },
 ];
 
 const couponTable = [
-    { desc: 'أقوى عروض نون الحضرية: خصم حتى 80% + كود خصم 10% إضافي', code: 'ALM1', status: 'عرض فعال' },
-    { desc: 'كود خصم نون 80% على أفضل المنتجات + 10% إضافي',            code: 'ALM1', status: 'عرض فعال' },
-    { desc: 'خصومات نون بنسبة 70% على الأزياء + 10% إضافي',             code: 'ALM1', status: 'عرض فعال' },
-    { desc: 'كوبون خصم نون 40% على الأجهزة الكهربائية + 10% إضافي',     code: 'ALM1', status: 'عرض فعال' },
-    { desc: 'خصم نون 2026 يصل إلى 60% على الموبايلات + 10% إضافي',      code: 'ALM1', status: 'عرض فعال' },
-    { desc: 'خصم نون 70% على منتجات الجمال + 10% إضافي',                code: 'ALM1', status: 'عرض فعال' },
-    { desc: 'كود خصم نون مصر بقيمة 10% إضافي على كل المنتجات',          code: 'ALM1', status: 'عرض فعال' },
+    { discount: 'كوبون 10%',         code: 'ALM1',          desc: 'كود خصم نون 2026: خصم 10% على كل الموقع'              },
+    { discount: 'خصم ثابت 10%',      code: 'ALM1',          desc: 'أقوى كود خصم نون يونيو 2026'                          },
+    { discount: 'تخفيضات حتى 80%',   code: 'رابط للتفعيل',  desc: 'خصومات نون نهاية الموسم: حتى 80% على الأزياء'         },
+    { discount: 'تخفيضات حتى 70%',   code: 'رابط للتفعيل',  desc: 'تخفيضات نون يونيو 2026'                               },
+    { discount: 'تخفيض إضافي 10%',   code: 'APP10',         desc: 'كود خصم نون أول طلب: 10% للعملاء الجدد'              },
+    { discount: 'خصومات حتى 60%',    code: 'رابط للتفعيل',  desc: 'كود نون: تخفيضات على الأجهزة الكهربائية'             },
+    { discount: 'تخفيضات حتى 60%',   code: 'رابط للتفعيل',  desc: 'كود خصم نون على منتجات الجمال والعناية'              },
+];
+
+const similarStores = [
+    { name: 'Amazon',     domain: 'amazon.com',      slug: 'amazon',      discount: 'حتى 40%'  },
+    { name: 'AliExpress', domain: 'aliexpress.com',  slug: 'aliexpress',  discount: 'حتى 70%'  },
+    { name: 'iHerb',      domain: 'iherb.com',       slug: 'iherb',       discount: 'حتى 65%'  },
+    { name: 'FARFETCH',   domain: 'farfetch.com',    slug: 'farfetch',    discount: 'حتى 70%'  },
+    { name: 'Namshi',     domain: 'namshi.com',      slug: 'namshi',      discount: 'حتى 50%'  },
+    { name: 'Waffarha',   domain: 'waffarha.com',    slug: 'waffarha',    discount: 'حتى 65%'  },
 ];
 
 const faqs = [
@@ -141,7 +157,7 @@ const noonTypes = [
 
 const noonFeatures = [
     'خصم نون بنسبة 10% على كل شروة. استخدم كود خصم نون مصر (ALM1) عند السداد لكي تحصل على تخفيض 10% إضافي على أي قيمة كانت.',
-    'توفير المال الحقيقي. بالإضافة إلى عروض نون اليومية وصفقات الفلاش، فاحرص على ألا تفوت خصومات نون الكبيرة في أحداث التسوق الخاصة والأعياد والمناسبات والتي تجدها جميعها على الموفر.',
+    'توفير المال الحقيقي. بالإضافة إلى عروض نون اليومية وصفقات الفلاش، فاحرص على ألا تفوت خصومات نون الكبيرة في أحداث التسوق الخاصة والأعياد والمناسبات والتي تجدها جميعها على المسوق.',
     'منصة شاملة لتسوق كل ما تحتاجه. متجر نون مصر هو المنصة الشاملة لتسوق جميع الفئات الاستهلاكية والترفيهية والعائلية وكافة الماركات.',
     'منتجات أصلية 100% ومضمونة الجودة. نون مصر يلتزم بتوفير أفضل المنتجات للشهر الماركات بضمان جودتها من المصنّع، وكل ذلك بأسعار معقولة وجميع احتياجاتك.',
     'خيارات تسوق رفيعة. نون مصر تقدم خدمات الشحن المجاني والتوصيل السريع على جميع المنتجات والطلبيات المؤهلة، بما في ذلك التوصيل بنفس اليوم، خيارات الدفع المتاحة عند الاستلام والتقسيط، خدمة مركز العملاء، إرجاع مجاني، إجراءات سهلة عند أي استفسار على المنتجات المؤهلة وغيرها الكثير.',
@@ -258,62 +274,83 @@ function CouponModal({ coupon, onClose }) {
     );
 }
 
-function CouponCard({ coupon, onOpen }) {
-    const [infoOpen, setInfoOpen] = useState(false);
+function SideStoreLogo2({ domain, name, color }) {
+    const [idx, setIdx] = useState(0);
+    const sources = [
+        `https://logo.clearbit.com/${domain}`,
+        `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=256`,
+    ];
+    return idx >= sources.length
+        ? <span className="text-xs font-black" style={{ color }}>{name}</span>
+        : <img key={idx} src={sources[idx]} alt={name} className="w-10 h-10 object-contain" onError={() => setIdx(p => p + 1)} />;
+}
 
+function CouponCard({ coupon, onOpen }) {
     const badgeColor = (b) => {
-        if (b === 'جديد') return 'bg-[#FF4081] text-white';
+        if (b === 'جديد')          return 'bg-[#FF4081] text-white';
         if (b === 'الأكثر مبيعاً') return 'bg-orange-500 text-white';
-        if (b === 'موصى به') return 'bg-blue-500 text-white';
-        if (b === 'لا قود') return 'bg-gray-700 text-white';
-        return 'bg-gray-200 text-gray-700';
+        if (b === 'موصى به')        return 'bg-blue-500 text-white';
+        if (b === 'شحن مجاني')      return 'bg-green-100 text-green-700';
+        if (b === 'كوبون موثق')     return 'bg-emerald-100 text-emerald-700';
+        if (b === 'عروض مميزة')     return 'bg-purple-100 text-purple-700';
+        return 'bg-gray-100 text-gray-600';
     };
 
     return (
-        <div className="border-2 border-dashed border-gray-200 rounded-2xl p-4 bg-white hover:border-[#F5C518] transition-colors">
-            {/* Top row */}
-            <div className="flex items-center justify-between mb-2">
-                <button onClick={() => setInfoOpen(o => !o)} className="text-gray-400 hover:text-gray-600 text-sm">ℹ️</button>
-                <div className="flex gap-1.5 flex-wrap justify-end">
+        <div className="border border-gray-200 rounded-2xl bg-white hover:border-[#F5C518] transition-colors overflow-hidden">
+            {/* Header */}
+            <div className="bg-gray-50 px-4 py-2 flex items-center justify-between border-b border-gray-100">
+                <span className="text-xs font-black text-gray-500">{coupon.type}</span>
+                <span className="text-sm font-black text-gray-800">{coupon.discount}</span>
+            </div>
+
+            <div className="p-4">
+                {/* Badges */}
+                <div className="flex gap-1.5 flex-wrap justify-end mb-3">
                     {coupon.badges.map((b, i) => (
                         <span key={i} className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor(b)}`}>{b}</span>
                     ))}
                 </div>
-            </div>
 
-            {/* Info expand */}
-            {infoOpen && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-3 mb-3 text-xs text-gray-600 text-right leading-relaxed">
-                    هذا الكوبون تم التحقق منه وهو فعال وموثوق. يمكنك استخدامه مباشرة في ملخص الطلب.
+                {/* Title & desc */}
+                <div className="text-right mb-4">
+                    <h3 className="font-black text-gray-800 text-sm sm:text-base leading-snug mb-1">{coupon.title}</h3>
+                    <p className="text-xs text-gray-500 leading-relaxed">{coupon.desc}</p>
                 </div>
-            )}
 
-            {/* Title & desc */}
-            <div className="text-right mb-3">
-                <h3 className="font-black text-gray-800 text-sm sm:text-base leading-snug mb-1">{coupon.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{coupon.desc}</p>
-            </div>
-
-            {/* Bottom row */}
-            <div className="flex items-center justify-between gap-3">
-                <div className="flex flex-col items-start gap-1">
-                    <div className="flex items-center gap-1 text-[11px] text-green-600 font-bold">
-                        <span>✓</span>
-                        <span>كوبون فعال وموثوق</span>
-                    </div>
-                    {coupon.used && (
-                        <div className="flex items-center gap-1 text-[10px] text-gray-400">
-                            <span>🕐</span>
-                            <span>{coupon.used}</span>
-                        </div>
+                {/* Code + buttons */}
+                <div className="flex flex-col sm:flex-row gap-2 mb-3">
+                    {coupon.code ? (
+                        <button
+                            onClick={() => onOpen(coupon)}
+                            className="flex-1 bg-[#F5C518] hover:bg-yellow-400 text-black font-black py-2.5 rounded-xl text-sm transition-all"
+                        >
+                            انسخ الكود: {coupon.code}
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => window.open(`https://${store.domain}`, '_blank', 'noopener,noreferrer')}
+                            className="flex-1 bg-[#F5C518] hover:bg-yellow-400 text-black font-black py-2.5 rounded-xl text-sm transition-all"
+                        >
+                            احصل على العرض
+                        </button>
                     )}
+                    <a
+                        href={`https://${store.domain}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 border border-gray-200 text-gray-600 hover:border-[#F5C518] hover:text-gray-800 font-bold py-2.5 rounded-xl text-sm text-center transition-all"
+                    >
+                        المتابعة إلى موقع {store.nameAr} ←
+                    </a>
                 </div>
-                <button
-                    onClick={() => onOpen(coupon)}
-                    className="shrink-0 font-black text-sm px-5 py-2.5 rounded-xl transition-all bg-[#F5C518] text-black hover:bg-yellow-400"
-                >
-                    انسخ الكود
-                </button>
+
+                {/* Usage stats */}
+                <div className="flex items-center gap-4 text-[11px] text-gray-400 flex-wrap justify-end">
+                    <span>🔥 {coupon.usedToday} استخدام اليوم</span>
+                    <span>🕐 آخر استخدام منذ {coupon.lastUsed}</span>
+                    <span>💰 آخر توفير {coupon.lastSaving}</span>
+                </div>
             </div>
         </div>
     );
@@ -366,7 +403,7 @@ function Sidebar({ onGiftHunter }) {
             <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                     <a href="/stores" className="text-xs text-[#00BFA5]">كل المتاجر</a>
-                    <h3 className="font-black text-sm text-gray-800">أفضل المتاجر</h3>
+                    <h3 className="font-black text-sm text-gray-800">المتاجر العالمية</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                     {sideStores.map((s, i) => (
@@ -382,8 +419,8 @@ function Sidebar({ onGiftHunter }) {
                 <h3 className="font-black text-sm text-gray-800 text-right mb-3">تسوق كالمحترفين</h3>
                 <div className="flex items-center gap-3">
                     <div className="flex flex-col gap-2 flex-1 text-right">
-                        <p className="font-black text-sm text-gray-800 leading-snug">احصل على تطبيق الموفر!</p>
-                        <p className="text-xs text-gray-500 leading-relaxed">تقدم في المراحل واكسب الوحدات – استبدل وحدات الموفر بقسائم شرائية مميزة!</p>
+                        <p className="font-black text-sm text-gray-800 leading-snug">احصل على تطبيق المسوق!</p>
+                        <p className="text-xs text-gray-500 leading-relaxed">تقدم في المراحل واكسب الوحدات – استبدل وحدات المسوق بقسائم شرائية مميزة!</p>
                         <div className="flex flex-col gap-1.5 mt-1">
                             <a href="#" className="bg-black text-white text-[10px] font-bold py-1.5 px-3 rounded-lg text-center">🍎 App Store</a>
                             <a href="#" className="bg-black text-white text-[10px] font-bold py-1.5 px-3 rounded-lg text-center">▶ Google Play</a>
@@ -396,7 +433,7 @@ function Sidebar({ onGiftHunter }) {
             {/* Chrome Extension */}
             <div className="bg-white rounded-2xl p-4 shadow-sm text-right">
                 <h3 className="font-black text-sm text-gray-800 mb-1">وفّر بسهولة</h3>
-                <p className="text-xs text-gray-500 mb-3 leading-relaxed">لا تفوت الخصومات مرة أخرى! ميزة الموفر على كروم تعثر على الخصومات وتطبقها تلقائياً.</p>
+                <p className="text-xs text-gray-500 mb-3 leading-relaxed">لا تفوت الخصومات مرة أخرى! ميزة المسوق على كروم تعثر على الخصومات وتطبقها تلقائياً.</p>
                 <a href="#" className="block bg-[#FF4444] text-white text-xs font-bold py-2 px-4 rounded-xl text-center">+ أضف إلى كروم</a>
             </div>
 
@@ -404,9 +441,9 @@ function Sidebar({ onGiftHunter }) {
             <div className="bg-white rounded-2xl p-4 shadow-sm">
                 <div className="flex items-center gap-3">
                     <div className="flex-1 text-right">
-                        <h3 className="font-black text-sm text-gray-800 mb-1">اكتشف اروع الهدايا مع صياد الهدايا</h3>
-                        <p className="text-xs text-gray-500 leading-relaxed mb-3">اكتشف قوة الذكاء الاصطناعي مع هذا البوت الذي تم تصميمه خصيصاً لإيجاد الهدية المثالية!</p>
-                        <button onClick={onGiftHunter} className="bg-[#FF4081] text-white text-xs font-black px-4 py-2 rounded-xl w-full">جربه الآن</button>
+                        <h3 className="font-black text-sm text-gray-800 mb-1 text-center">مرحبا بك انا نوره</h3>
+                        <p className="text-xs text-gray-500 leading-relaxed mb-3">مساعدتك الذكية لإيجاد أفضل العروض والكوبونات</p>
+                        <button onClick={onGiftHunter} className="bg-[#FF4081] text-white text-xs font-black px-4 py-2 rounded-xl w-full">هيا نبدأ</button>
                     </div>
                     <div className="text-4xl shrink-0">🤖</div>
                 </div>
@@ -520,17 +557,20 @@ export default function StoreDetail() {
                                     <table className="w-full text-sm">
                                         <thead>
                                             <tr className="border-b-2 border-gray-100">
-                                                <th className="text-right pb-3 text-gray-500 font-bold text-xs">عرض فعال</th>
-                                                <th className="text-center pb-3 text-gray-500 font-bold text-xs">كود خصم نون صالح لغاية</th>
-                                                <th className="text-right pb-3 text-gray-500 font-bold text-xs">كوبونات ونون</th>
+                                                <th className="text-right pb-3 text-gray-500 font-bold text-xs">الخصم</th>
+                                                <th className="text-center pb-3 text-gray-500 font-bold text-xs">كوبون خصم</th>
+                                                <th className="text-right pb-3 text-gray-500 font-bold text-xs">التفاصيل</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {couponTable.map((row, i) => (
                                                 <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                                                    <td className="py-3 text-[#00BFA5] font-bold text-xs">{row.status}</td>
+                                                    <td className="py-3 text-[#00BFA5] font-bold text-xs whitespace-nowrap">{row.discount}</td>
                                                     <td className="py-3 text-center">
-                                                        <span className="bg-yellow-100 text-yellow-800 font-black text-xs px-3 py-1 rounded-lg">{row.code}</span>
+                                                        {row.code === 'رابط للتفعيل'
+                                                            ? <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" className="text-[#00BFA5] text-xs font-bold hover:underline">رابط للتفعيل</a>
+                                                            : <span className="bg-yellow-100 text-yellow-800 font-black text-xs px-3 py-1 rounded-lg">{row.code}</span>
+                                                        }
                                                     </td>
                                                     <td className="py-3 text-gray-700 text-xs leading-relaxed">{row.desc}</td>
                                                 </tr>
@@ -545,9 +585,9 @@ export default function StoreDetail() {
                                 <h2 className="text-xl font-black text-gray-800 mb-4">احصائيات كوبونات {store.nameAr}</h2>
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                                     {[
-                                        { num: '854',    label: 'كوبونات الخصم والعروض على الموفر™.' },
-                                        { num: '1,255',  label: 'المتاجر التي تُقدم كوبونات على الموفر™.' },
-                                        { num: '9,312',  label: 'عدد الموفرين الشهري عبر موقع الموفر™.' },
+                                        { num: '854',    label: 'كوبونات الخصم والعروض على المسوق™.' },
+                                        { num: '1,255',  label: 'المتاجر التي تُقدم كوبونات على المسوق™.' },
+                                        { num: '9,312',  label: 'عدد المسوقين الشهري عبر موقع المسوق™.' },
                                         { num: '15.32%', label: 'قيمة الخصومات المتوسطة للمستخدمين.' },
                                     ].map((s, i) => (
                                         <div key={i} className="text-center p-3 bg-gray-50 rounded-xl">
@@ -592,7 +632,7 @@ export default function StoreDetail() {
                             <div className="bg-white rounded-2xl p-5 shadow-sm mb-5 text-right">
                                 <h2 className="text-xl font-black text-gray-800 mb-4">أنواع اكواد خصم {store.nameAr} مصر 2026</h2>
                                 <p className="text-sm text-gray-500 mb-4 leading-relaxed">
-                                    لا تُقم بالتسوق من موقع Noon مصر قبل اكتشاف اكواد خصم نون والتخفيضات الحصرية عبر الموفر في الزمن الحقيقي، والتي تجد من بينها:
+                                    لا تُقم بالتسوق من موقع Noon مصر قبل اكتشاف اكواد خصم نون والتخفيضات الحصرية عبر المسوق في الزمن الحقيقي، والتي تجد من بينها:
                                 </p>
                                 <div className="flex flex-col gap-4">
                                     {noonTypes.map((t, i) => (
@@ -622,8 +662,8 @@ export default function StoreDetail() {
                                 <p className="text-sm text-gray-500 mb-4">إليك بعض النصائح والإرشادات حول اكواد خصم نون وغيرها من العروض والممارسات التي تضمن لك توفير المال عند التسوق من متجر نون مصر:</p>
                                 <ol className="flex flex-col gap-3">
                                     {[
-                                        `استخدم كود خصم نون مصر عبر الموفر. احرص على استخدام كود نون (ALM1) في ملخص كل شروة لتخصم 10% من القيمة الإجمالية وتوفّر المال!`,
-                                        `لا تفوت اكواد خصم نون عبر الموفر. الموفر يقدم لك أحدث كوبونات خصم نون 2026 في الزمن الحقيقي، فعالة 100% على جميع المنتجات والماركات.`,
+                                        `استخدم كود خصم نون مصر عبر المسوق. احرص على استخدام كود نون (ALM1) في ملخص كل شروة لتخصم 10% من القيمة الإجمالية وتوفّر المال!`,
+                                        `لا تفوت اكواد خصم نون عبر المسوق. المسوق يقدم لك أحدث كوبونات خصم نون 2026 في الزمن الحقيقي، فعالة 100% على جميع المنتجات والماركات.`,
                                         `تحقق من عروض نون اليوم في جميع الأحداث الكبرى. بالإضافة إلى عروض نون اليومية وصفقات الفلاش، فاحرص على ألا تفوت خصومات نون في أحداث التسوق الخاصة والأعياد.`,
                                         `أنفق 200 جنيه على الأقل للحصول على شحن مجاني.`,
                                         `استخدم خدمات الدفع الآجل والتقسيط الميسر. عند الشراء بقيمة 500 جنيه على الأقل، يمكنك استخدام خيار الدفع بالتقسيط.`,
@@ -698,7 +738,7 @@ export default function StoreDetail() {
 
                             {/* Reviews */}
                             <div className="bg-white rounded-2xl p-5 shadow-sm mb-5 text-right">
-                                <h2 className="text-xl font-black text-gray-800 mb-4">تقييمات حقيقية من مستخدمي تطبيق الموفر للكوبونات</h2>
+                                <h2 className="text-xl font-black text-gray-800 mb-4">تقييمات حقيقية من مستخدمي تطبيق المسوق للكوبونات</h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {reviews.map((r, i) => (
                                         <div key={i} className="border border-gray-100 rounded-2xl p-4 text-right">
@@ -723,6 +763,20 @@ export default function StoreDetail() {
                                             </div>
                                             <p className="text-xs text-gray-600 leading-relaxed">"{r.text}"</p>
                                         </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Similar Stores */}
+                            <div className="bg-white rounded-2xl p-5 shadow-sm mb-5 text-right">
+                                <h2 className="text-xl font-black text-gray-800 mb-4">متاجر مشابهة لـ {store.nameAr}</h2>
+                                <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                                    {similarStores.map((s, i) => (
+                                        <a key={i} href={`/store/${s.slug}`} className="flex flex-col items-center gap-2 border border-gray-100 rounded-xl p-3 hover:border-[#F5C518] transition-colors">
+                                            <SideStoreLogo2 domain={s.domain} name={s.name} color="#F5C518" />
+                                            <span className="text-[10px] text-gray-500 text-center leading-tight">{s.name}</span>
+                                            <span className="text-[10px] font-bold text-[#00BFA5]">{s.discount}</span>
+                                        </a>
                                     ))}
                                 </div>
                             </div>
