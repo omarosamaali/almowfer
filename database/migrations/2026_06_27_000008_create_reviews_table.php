@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id();
+            $table->nullableMorphs('reviewable');
+            $table->string('context')->default('global');
+            $table->string('name');
+            $table->string('avatar')->nullable();
+            $table->string('initials')->nullable();
+            $table->string('bg_color')->nullable();
+            $table->unsignedTinyInteger('stars')->default(5);
+            $table->text('text');
+            $table->string('review_date')->nullable();
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('reviews');
+    }
+};

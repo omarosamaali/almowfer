@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import GiftHunter from '../Components/GiftHunter';
 import NewsletterBox from '../Components/NewsletterBox';
 
 // ==================== DATA ====================
 
-const store = {
+const DEFAULT_STORE = {
     name: 'Noon',
     nameAr: 'نون',
     domain: 'noon.com',
@@ -20,7 +21,7 @@ const store = {
     code: 'ALM1',
 };
 
-const coupons = [
+const DEFAULT_COUPONS = [
     {
         title: 'أقوى العروض: خصم حتى 80% + 10% إضافي',
         desc: 'أقوى عروض نون الحضرية خصم حتى 80% + كود خصم 10% إضافي',
@@ -86,7 +87,7 @@ const coupons = [
     },
 ];
 
-const couponTable = [
+const DEFAULT_COUPON_TABLE = [
     { discount: 'كوبون 10%',         code: 'ALM1',          desc: 'كود خصم نون 2026: خصم 10% على كل الموقع'              },
     { discount: 'خصم ثابت 10%',      code: 'ALM1',          desc: 'أقوى كود خصم نون يونيو 2026'                          },
     { discount: 'تخفيضات حتى 80%',   code: 'رابط للتفعيل',  desc: 'خصومات نون نهاية الموسم: حتى 80% على الأزياء'         },
@@ -96,7 +97,7 @@ const couponTable = [
     { discount: 'تخفيضات حتى 60%',   code: 'رابط للتفعيل',  desc: 'كود خصم نون على منتجات الجمال والعناية'              },
 ];
 
-const similarStores = [
+const DEFAULT_SIMILAR_STORES = [
     { name: 'Amazon',     domain: 'amazon.com',      slug: 'amazon',      discount: 'حتى 40%'  },
     { name: 'AliExpress', domain: 'aliexpress.com',  slug: 'aliexpress',  discount: 'حتى 70%'  },
     { name: 'iHerb',      domain: 'iherb.com',       slug: 'iherb',       discount: 'حتى 65%'  },
@@ -105,7 +106,7 @@ const similarStores = [
     { name: 'Waffarha',   domain: 'waffarha.com',    slug: 'waffarha',    discount: 'حتى 65%'  },
 ];
 
-const faqs = [
+const DEFAULT_FAQS = [
     { q: 'ما هو افوى كود خصم نون مصر؟',         a: 'أقوى كود نون هو (ALM1) يمنحك خصم 10% إضافي على موقع Noon، يشمل المنتجات المخفضة – ألصق كوبون نون عند الدفع للتحقق.' },
     { q: 'ما هي افوى عروض نون؟',                  a: 'خصومات نون بقيمة حتى 80% على أفضل المنتجات والماركات من شتى الفئات، بالإضافة إلى كوبون نون مصر (ALM1) بقيمة 10% فعال على كل شروه.' },
     { q: 'إزاي تاخد خصم من نون؟',                 a: 'استخدم كود خصم نون مصر (ALM1) في خانة رمز الكوبون في ملخص Noon واخصم 10% من قيمتها الإجمالية.' },
@@ -115,7 +116,7 @@ const faqs = [
     { q: 'هل منتجات نون مصر مضمونة؟',             a: 'نعم، بكل تأكيد. جميع المنتجات أصيلة ومضمونة 100%، بحيث تتقدم شركة نون ضمانًا لمدة 12 شهراً على جميع منتجاتها المؤهلة، وذلك إلى جانب الضمان الذي يقدمه البائعون الآخرون على المنصة.' },
 ];
 
-const sideStores = [
+const sideStoresDefault = [
     { name: 'Almatar',    domain: 'almatar.com',    color: '#E53935', slug: 'almatar' },
     { name: 'Amazon',     domain: 'amazon.sa',       color: '#FF9900', slug: 'amazon' },
     { name: 'Noon',       domain: 'noon.com',        color: '#FEEE00', slug: 'noon-egypt' },
@@ -134,7 +135,7 @@ const sideArticles = [
     { cat: 'BEAUTY – الجمال والعناية', title: 'تخفيضات باث أند بودي 2025 – خصم حتى 80% على بعض المنتجات', img: 'https://images.unsplash.com/photo-1512436991641-6745cae21c5b?w=120&q=80&fit=crop' },
 ];
 
-const reviews = [
+const DEFAULT_REVIEWS = [
     { name: 'فواز العلوي',   initials: 'ف', bg: '#00BFA5', date: '13-03-2026', stars: 5, text: 'ممتاز ويعطي كوبونات مجاناً!' },
     { name: 'مجدي فرج',      initials: 'م', bg: '#8B5CF6', date: '29-03-2026', stars: 5, text: 'ممتاز جداً كانت تجربة رائعة للغاية المبني من الجميع ز حمل التطبيق والاستمتاع بالخصم الجبار' },
     { name: 'اسامه بن طالب', initials: 'ا', bg: '#00BFA5', date: '07-03-2026', stars: 5, text: 'تجربتي كانت ممتاز جداً!' },
@@ -175,7 +176,7 @@ function Stars({ rating }) {
     );
 }
 
-function StoreLogo() {
+function StoreLogo({ store = DEFAULT_STORE }) {
     const [err, setErr] = useState(false);
     return err ? (
         <span className="text-3xl font-black text-black">🌙 noon</span>
@@ -203,7 +204,7 @@ function SideStoreLogo({ s }) {
     );
 }
 
-function CouponModal({ coupon, onClose }) {
+function CouponModal({ coupon, onClose, store = DEFAULT_STORE }) {
     const [copied, setCopied] = useState(false);
     if (!coupon) return null;
 
@@ -225,7 +226,7 @@ function CouponModal({ coupon, onClose }) {
 
                 {/* Store logo */}
                 <div className="flex justify-center pt-2">
-                    <StoreLogo />
+                    <StoreLogo store={store} />
                 </div>
 
                 {/* Title */}
@@ -285,7 +286,7 @@ function SideStoreLogo2({ domain, name, color }) {
         : <img key={idx} src={sources[idx]} alt={name} className="w-10 h-10 object-contain" onError={() => setIdx(p => p + 1)} />;
 }
 
-function CouponCard({ coupon, onOpen }) {
+function CouponCard({ coupon, onOpen, store = DEFAULT_STORE }) {
     const badgeColor = (b) => {
         if (b === 'جديد')          return 'bg-[#FF4081] text-white';
         if (b === 'الأكثر مبيعاً') return 'bg-orange-500 text-white';
@@ -374,7 +375,7 @@ function FaqItem({ faq }) {
     );
 }
 
-function Sidebar({ onGiftHunter }) {
+function Sidebar({ onGiftHunter, store = DEFAULT_STORE, sideStores = sideStoresDefault }) {
     const [email, setEmail] = useState('');
     return (
         <aside className="flex flex-col gap-5">
@@ -474,6 +475,14 @@ function Sidebar({ onGiftHunter }) {
 // ==================== MAIN PAGE ====================
 
 export default function StoreDetail() {
+    const page = usePage().props;
+    const store = page.store ?? DEFAULT_STORE;
+    const coupons = page.coupons?.length ? page.coupons : DEFAULT_COUPONS;
+    const couponTable = page.couponTable?.length ? page.couponTable : DEFAULT_COUPON_TABLE;
+    const similarStores = page.similarStores?.length ? page.similarStores : DEFAULT_SIMILAR_STORES;
+    const reviews = page.reviews?.length ? page.reviews : DEFAULT_REVIEWS;
+    const faqs = page.faqItems?.length ? page.faqItems : DEFAULT_FAQS;
+    const topStores = page.topStores?.length ? page.topStores : sideStoresDefault;
     const [showGH, setShowGH] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState(null);
 
@@ -484,7 +493,7 @@ export default function StoreDetail() {
                 {/* Sticky Store Logo Bar */}
                 <div className="sticky top-0 z-40 shadow-md" style={{ background: store.color }}>
                     <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-center">
-                        <StoreLogo />
+                        <StoreLogo store={store} />
                     </div>
                 </div>
 
@@ -503,7 +512,7 @@ export default function StoreDetail() {
 
                         {/* ===== SIDEBAR ===== */}
                         <div className="hidden lg:block w-72 xl:w-80 shrink-0">
-                            <Sidebar onGiftHunter={() => setShowGH(true)} />
+                            <Sidebar onGiftHunter={() => setShowGH(true)} store={store} sideStores={topStores} />
                         </div>
 
                         {/* ===== MAIN CONTENT ===== */}
@@ -531,7 +540,7 @@ export default function StoreDetail() {
                             {/* Coupon Cards */}
                             <div className="flex flex-col gap-3 mb-6">
                                 {coupons.map((c, i) => (
-                                    <CouponCard key={i} coupon={c} onOpen={setSelectedCoupon} />
+                                    <CouponCard key={i} coupon={c} onOpen={setSelectedCoupon} store={store} />
                                 ))}
                             </div>
 
@@ -783,7 +792,7 @@ export default function StoreDetail() {
 
                             {/* Customer Service Sidebar section for mobile */}
                             <div className="lg:hidden">
-                                <Sidebar onGiftHunter={() => setShowGH(true)} />
+                                <Sidebar onGiftHunter={() => setShowGH(true)} store={store} sideStores={topStores} />
                             </div>
 
                         </div>
@@ -792,7 +801,7 @@ export default function StoreDetail() {
             </div>
 
             <GiftHunter open={showGH} onClose={() => setShowGH(false)} />
-            <CouponModal coupon={selectedCoupon} onClose={() => setSelectedCoupon(null)} />
+            <CouponModal coupon={selectedCoupon} onClose={() => setSelectedCoupon(null)} store={store} />
         </MainLayout>
     );
 }

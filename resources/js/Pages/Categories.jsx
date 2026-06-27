@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import NewsletterBox from '../Components/NewsletterBox';
 
@@ -314,6 +315,10 @@ function CategoryCard({ category }) {
 // ==================== MAIN PAGE ====================
 
 export default function Categories() {
+    const page = usePage().props;
+    const categories = page.categories ?? [];
+    const topStores = page.topStores ?? [];
+    const stats = page.stats ?? [];
     return (
         <MainLayout>
             <div className="bg-gray-50 min-h-screen">

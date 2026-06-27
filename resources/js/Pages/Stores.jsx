@@ -4,84 +4,8 @@ import MainLayout from '../Layouts/MainLayout';
 import GiftHunter from '../Components/GiftHunter';
 import NewsletterBox from '../Components/NewsletterBox';
 
-// ==================== DATA ====================
-
-// color = brand color for text fallback
-const allStores = [
-    { name: 'noon',              domain: 'noon.com',             coupons: 7, color: '#F6A623', category: 'تسوق',         desc: 'أقوى عروض نون الحصرية: خصم حتى 80% + كود خصم 10%...'             },
-    { name: 'Amazon',            domain: 'amazon.com',           coupons: 7, color: '#FF9900', category: 'تسوق',         desc: 'خصومات أمازون حتى 40% على المقاضي والمستلزمات اليومية'           },
-    { name: 'almatar',           domain: 'almatar.com',          coupons: 2, color: '#E91E8C', category: 'رحلات',        desc: 'كود خصم المطار: خصم 5% على حجوزات الطيران + 5% كاش باك'          },
-    { name: 'DeFacto',           domain: 'defacto.com.tr',       coupons: 5, color: '#1A1A1A', category: 'أزياء',        desc: 'كود خصم ديفاكتو بنسبة 10% إضافي على كل المتجر'                   },
-    { name: 'Waffarha',          domain: 'waffarha.com',         coupons: 5, color: '#FF6B35', category: 'تسوق',         desc: 'أكواد خصم وفرها بنسبة حتى 65% + 10% كاش باك'                     },
-    { name: 'AliExpress',        domain: 'aliexpress.com',       coupons: 1, color: '#FF4747', category: 'تسوق',         desc: 'كود خصم علي اكسبرس يصل إلى 70% على أفضل المنتجات'                },
-    { name: 'Max',               domain: 'max-fashion.com',      coupons: 3, color: '#002A5C', category: 'أزياء',        desc: 'كود خصم ماكس بقيمة 10% إضافي على أفضل المنتجات غير...'          },
-    { name: 'iHerb',             domain: 'iherb.com',            coupons: 3, color: '#5B8C3E', category: 'صحة',          desc: 'كود خصم اي هيرب: خصم حتى 65% + 20% إضافي'                       },
-    { name: 'FARFETCH',          domain: 'farfetch.com',         coupons: 2, color: '#1A1A1A', category: 'أزياء',        desc: 'خصم فارفيتش حتى 70% على ستايلات مختارة'                          },
-    { name: 'Trip.com',          domain: 'trip.com',             coupons: 5, color: '#1A73E8', category: 'رحلات',        desc: 'كود خصم تريب حتى 15% على الجولات والأنشطة'                       },
-    { name: 'ChildrenSalon',     domain: 'childrensalon.com',    coupons: 3, color: '#8B4513', category: 'أزياء',        desc: 'تخفيضات الصيف: خصم حتى 60%'                                      },
-    { name: 'Airalo',            domain: 'airalo.com',           coupons: 2, color: '#6C5CE7', category: 'خدمات',        desc: 'كود خصم Airalo بقيمة 10% إضافي على بطاقات eSIM'                  },
-    { name: 'Decathlon',         domain: 'decathlon.com',        coupons: 3, color: '#0082C3', category: 'سبورت',        desc: 'كود خصم ديكاتلون بقيمة 10% إضافي على كل الموقع'                  },
-    { name: 'Eurowings',         domain: 'eurowings.com',        coupons: 1, color: '#840098', category: 'رحلات',        desc: 'خصم حتى 20% على أفضل الوجهات لمستخدمي...'                        },
-    { name: 'Adidas',            domain: 'adidas.com',           coupons: 2, color: '#1A1A1A', category: 'سبورت',        desc: 'خصم أديداس حتى 50% على أفضل المنتجات'                            },
-    { name: 'Ubuy',              domain: 'ubuy.com',             coupons: 9, color: '#FF6B00', category: 'تسوق',         desc: 'خصم يوباي بقيمة 85% على أفضل المنتجات + 5% إضافي'                },
-    { name: 'IHG Hotels',        domain: 'ihg.com',              coupons: 2, color: '#003580', category: 'رحلات',        desc: 'كود خصم IHG بنسبة 25% على حجوزات الفنادق والمنتجعات'             },
-    { name: 'SQUATWOLF',         domain: 'squatwolf.com',        coupons: 1, color: '#1A1A1A', category: 'سبورت',        desc: 'كود خصم سكواتوولف بقيمة 15% على كل الموقع'                       },
-    { name: 'H&M',               domain: 'hm.com',               coupons: 1, color: '#E50010', category: 'أزياء',        desc: 'عروض H&M: خصم حتى 75% على ستايلات مختارة'                        },
-    { name: 'Alibaba',           domain: 'alibaba.com',          coupons: 6, color: '#FF6A00', category: 'تسوق',         desc: 'خصم علي بابا بنسبة 10% على أفضل المنتجات مميزة'                  },
-    { name: 'RayaShop',          domain: 'rayashop.com',         coupons: 6, color: '#0066CC', category: 'إلكترونيات',   desc: 'كود خصم رايه شوب بقيمة 10% إضافي على كل المتجر'                  },
-    { name: 'Foot Locker',       domain: 'footlocker.com',       coupons: 6, color: '#CC0000', category: 'سبورت',        desc: 'كود خصم فوت لوكر بقيمة 5% على المنتجات غير المخفضة'              },
-    { name: 'Dr. Nutrition',     domain: 'drnutrition.co.uk',    coupons: 7, color: '#1B5E20', category: 'صحة',          desc: 'كود خصم دكتور نيوتريشن بقيمة 10% إضافي على كل...'                },
-    { name: 'DHgate',            domain: 'dhgate.com',           coupons: 4, color: '#E31837', category: 'تسوق',         desc: 'كود خصم DHgate بقيمة 70% على أفضل المنتجات'                      },
-    { name: 'HUAWEI',            domain: 'huawei.com',           coupons: 6, color: '#CF0A2C', category: 'إلكترونيات',   desc: 'كود خصم هواوي مصر بقيمة 5% على جميع المنتجات'                   },
-    { name: 'New Balance',       domain: 'newbalance.com',       coupons: 3, color: '#CC0000', category: 'سبورت',        desc: 'كود خصم نيو بالانس بقيمة 10% إضافي على جميع...'                  },
-    { name: 'Shahid',            domain: 'shahid.net',           coupons: 1, color: '#00BFA5', category: 'خدمات',        desc: 'وفر حتى 50% على باقات شاهد VIP'                                  },
-    { name: 'EGO',               domain: 'ego-shoes.co.uk',      coupons: 1, color: '#1A1A1A', category: 'أزياء',        desc: 'كود خصم ايجو بقيمة 5% على جميع المشاوير'                         },
-    { name: 'goibibo',           domain: 'goibibo.com',          coupons: 1, color: '#E91E8C', category: 'رحلات',        desc: 'عروض Goibibo: خصم حتى 20% على الفنادق المختارة'                  },
-    { name: 'The Luxury Closet', domain: 'theluxurycloset.com',  coupons: 2, color: '#1A1A1A', category: 'أزياء',        desc: 'خصم ذا لكشري كلوزيت حتى 80% على أفضل التشكيلات...'               },
-    { name: 'Virgin Megastore',  domain: 'virginmegastore.me',   coupons: 5, color: '#E31837', category: 'إلكترونيات',   desc: 'كود خصم فيرجن نستينه حتى 50% على أفضل المنتجات'                  },
-    { name: 'Skyscanner',        domain: 'skyscanner.com',       coupons: 3, color: '#0770E3', category: 'رحلات',        desc: 'حجز طيران Skyscanner في أفضل الوجهات بأرخص الأسعار'              },
-    { name: 'AVG',               domain: 'avg.com',              coupons: 1, color: '#1676F3', category: 'خدمات',        desc: 'عروض اي في جي: وفر حتى 20%'                                      },
-    { name: 'VOGACLOSET',        domain: 'vogacloset.com',       coupons: 1, color: '#C2185B', category: 'أزياء',        desc: 'خصم فوجا كلوزيت حتى 80% على أفضل التشكيلات...'                   },
-    { name: 'edureka',           domain: 'edureka.co',           coupons: 1, color: '#F9A825', category: 'خدمات',        desc: 'اشتري 1 واحصل على 2 مجاناً + 20% كاش باك'                        },
-    { name: 'Cloudways',         domain: 'cloudways.com',        coupons: 1, color: '#2C3E50', category: 'خدمات',        desc: 'عروض كلاود ويز: خصم 95$ على الباقة الشهرية'                      },
-    { name: 'Tickets to Do',     domain: 'ticketstodo.com',      coupons: 1, color: '#00BFA5', category: 'رحلات',        desc: 'كود خصم TicketsToDo بنسبة 5% إضافي على جميع التذاكر'             },
-    { name: 'Trust.Zone',        domain: 'trust.zone',           coupons: 1, color: '#2ECC71', category: 'خدمات',        desc: 'عروض تراست زون: وفر 70% مع باقة سنوية'                           },
-    { name: 'Bait Al Kandora',   domain: 'baitalkandora.com',    coupons: 1, color: '#6D4C41', category: 'أزياء رجالية', desc: 'كوبون خصم 10% من بيت الكندورة'                                   },
-    { name: 'flynas',            domain: 'flynas.com',           coupons: 7, color: '#00BFA5', category: 'رحلات',        desc: 'عروض برنامج الولاء سمايل 2026: خصم حتى 50% وتقاط...'            },
-    { name: 'GetRentacar',       domain: 'getrentacar.com',      coupons: 1, color: '#1565C0', category: 'رحلات',        desc: 'كود خصم GetRentacar بنسبة 10% على تذاكر مختارة'                  },
-    { name: 'TicketNetwork',     domain: 'ticketnetwork.com',    coupons: 1, color: '#1565C0', category: 'رحلات',        desc: 'خصم TicketNetwork: خصم 10% على تذاكر مختارة'                     },
-    { name: 'Samsung',           domain: 'samsung.com',          coupons: 2, color: '#1428A0', category: 'إلكترونيات',   desc: 'خصم سامسونج مصر 10% ومزايا إضافية على منتجات...'                 },
-    { name: 'B.TECH',            domain: 'btech.com',            coupons: 1, color: '#E31837', category: 'إلكترونيات',   desc: 'برومو كود بي تك بنسبة 10% عند الشراء من موقع نون'                },
-    { name: 'The Outnet',        domain: 'theoutnet.com',        coupons: 4, color: '#1A1A1A', category: 'أزياء',        desc: 'كود خصم ذا اوت نت بنسبة 70% على الأزياء'                         },
-    { name: 'ANI YÜZÜK',         domain: 'aniyuzuk.com',         coupons: 1, color: '#7B1FA2', category: 'اكسسوارات',    desc: 'خصم يصل إلى 50% على عطور النساء'                                 },
-    { name: 'CesDeals',          domain: 'cesdeals.com',         coupons: 1, color: '#E53935', category: 'تسوق',         desc: 'عروض فلاش: احصل على خصم لتشكيلة الخصم'                          },
-    { name: 'CigaBuy',           domain: 'cigabuy.com',          coupons: 1, color: '#FF6B00', category: 'تسوق',         desc: 'احصل على خصم حتى 70% على كل الموقع'                              },
-    { name: 'Depositphotos',     domain: 'depositphotos.com',    coupons: 1, color: '#2979FF', category: 'خدمات',        desc: 'خصم حتى 20% على صور وفيديوهات احترافية'                          },
-    { name: 'Drimsim',           domain: 'drimsim.com',          coupons: 1, color: '#00ACC1', category: 'خدمات',        desc: 'انترنت سريع ومكالمات في جميع أنحاء العالم'                       },
-    { name: 'Booking',           domain: 'booking.com',          coupons: 3, color: '#003580', category: 'رحلات',        desc: 'كود خصم بوكينج حتى 20% على حجوزات الفنادق'                      },
-    { name: 'Namshi',            domain: 'namshi.com',           coupons: 4, color: '#E91E8C', category: 'أزياء',        desc: 'كود خصم نمشي 15% على أحدث صيحات الموضة + شحن مجاني'             },
-];
-
-const storeCategories = ['جميع الفئات', 'أزياء', 'أزياء رجالية', 'خدمات', 'إلكترونيات', 'الجمال والعناية', 'عروض اليوم', 'رحلات', 'اكسسوارات', 'احذية', 'تسوق', 'سبورت', 'منزل', 'صحة', 'غذاء'];
-
-const reviews = [
-    { name: 'فواز العلوي',   date: '13-03-2026', avatar: 'ف', color: '#00BFA5', text: '"ممتاز ويعطيك كوبونات مجاناً"' },
-    { name: 'مجدي فرج',     date: '29-03-2026', avatar: 'م', color: '#3F51B5', text: '"ممتاز جداً جداً كانت تجربة رائعة"' },
-    { name: 'اسامة بن طالب', date: '07-03-2026', avatar: 'أ', color: '#607D8B', text: '"تجربتي كانت ممتازة جداً"' },
-    { name: 'Abrheem Jal',  date: '10-03-2026', avatar: 'A', color: '#795548', text: '"تطبيق ممتاز ويروع عليك كثير"' },
-];
-
-const stats = [
-    { icon: '🏷️', value: '854',    label: 'كوبونات الخصم والعروض المتاحة على موقع المسوق™' },
-    { icon: '🛒', value: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع المسوق™' },
-    { icon: '👥', value: '9,312',  label: 'عدد المسوقين الشهري عبر موقع المسوق™' },
-    { icon: '💰', value: '15.32%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها المستخدمون' },
-];
-
-// ==================== STORE CARD ====================
-
 function storeSlug(store) {
-    return store.domain
+    return store.slug || store.domain
         .replace(/^www\./, '')
         .replace(/\.(com\.tr|co\.uk|co\.nz|com\.au|com\.eg|com\.sa|net|org|me|zone|co|com).*$/, '')
         .replace(/\./g, '-')
@@ -130,7 +54,12 @@ function StoreCard({ store }) {
 
 // ==================== MAIN PAGE ====================
 
-export default function Stores() {
+export default function Stores({
+    allStores = [],
+    storeCategories = ['جميع الفئات'],
+    reviews = [],
+    stats = [],
+}) {
     const [activeCategory, setActiveCategory] = useState('جميع الفئات');
     const [showCount, setShowCount] = useState(25);
     const [showGH, setShowGH] = useState(false);

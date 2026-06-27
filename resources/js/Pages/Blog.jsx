@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
-import { blogAuthors } from '../data/blogData';
 
 // ==================== DATA ====================
 
@@ -231,6 +230,14 @@ function CategorySection({ section }) {
 // ==================== MAIN PAGE ====================
 
 export default function Blog() {
+    const page = usePage().props;
+    const popularArticles = page.popularArticles ?? [];
+    const featuredArticles = page.featuredArticles ?? [];
+    const latestArticles = page.latestArticles ?? [];
+    const blogCategories = page.blogCategories ?? [];
+    const allBlogCategories = page.allBlogCategories ?? [];
+    const categoryArticleSections = page.categoryArticleSections ?? [];
+    const blogAuthors = page.blogAuthors ?? [];
     const [activeCategory, setActiveCategory] = useState(null);
 
     const visibleSections = activeCategory

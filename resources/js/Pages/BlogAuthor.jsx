@@ -151,10 +151,11 @@ function AuthorNotFound() {
 
 export default function BlogAuthor() {
     const [showGH, setShowGH] = useState(false);
-    const { slug } = usePage().props;
+    const page = usePage().props;
+    const { slug } = page;
 
-    const author = getAuthorBySlug(slug);
-    const articles = author ? getArticlesByAuthor(author) : [];
+    const author = page.author ?? getAuthorBySlug(slug);
+    const articles = page.articles ?? (author ? getArticlesByAuthor(author) : []);
 
     return (
         <MainLayout>

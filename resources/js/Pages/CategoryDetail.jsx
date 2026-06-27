@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import GiftHunter from '../Components/GiftHunter';
 import NewsletterBox from '../Components/NewsletterBox';
 
 // ==================== DATA ====================
 
-const category = {
+const DEFAULT_CATEGORY = {
     name: 'العاب الفيديو',
     nameEn: 'Gaming',
     parent: 'إلكترونيات',
@@ -18,7 +19,7 @@ const category = {
     lastUpdate: '01/04/2026',
 };
 
-const subCategories = [
+const DEFAULT_SUB_CATEGORIES = [
     { name: 'كل العاب الفيديو', slug: 'gaming',         icon: '🎮', active: true  },
     { name: 'بلايستيشن',        slug: 'playstation',     icon: '🎯', active: false },
     { name: 'Xbox',              slug: 'xbox',            icon: '🕹️', active: false },
@@ -27,7 +28,7 @@ const subCategories = [
     { name: 'إكسسوارات',         slug: 'gaming-accessories', icon: '🎧', active: false },
 ];
 
-const coupons = [
+const DEFAULT_COUPONS = [
     { store: 'noon',         domain: 'noon.com',         discount: 'خصم حتى 60% على العاب الفيديو',       desc: 'كود خصم نون 10% إضافي على العاب الفيديو والأجهزة',             btn: 'انسخ الكود', badge: 'جديد',    logo: '🌙', slug: 'noon-egypt',  code: 'ALM1'    },
     { store: 'Amazon',       domain: 'amazon.com',       discount: 'خصم حتى 50% على الألعاب والأجهزة',    desc: 'عروض أمازون المميزة على العاب الفيديو وإكسسوارات الجيمينج',    btn: 'احصل',       badge: 'جديد',    logo: '🛒', slug: 'amazon',      code: null      },
     { store: 'Virgin',       domain: 'virginmegastore.com', discount: 'خصم 20% على الألعاب المختارة',     desc: 'كود خصم فيرجن ميجاستور 20% على ألعاب PS5 وXbox وNintendo',     btn: 'انسخ الكود', badge: 'لا يفوت', logo: '🎵', slug: 'virgin',      code: 'VRG20'   },
@@ -68,7 +69,7 @@ const catStores = [
     { name: 'سوني',           slug: 'sony',        domain: 'sony.com'             },
 ];
 
-const faqs = [
+const DEFAULT_FAQS = [
     { q: 'ما هي المتاجر العالمية للحصول على كوبونات العاب الفيديو؟',       a: 'المتاجر العالمية للحصول على عروض وكوبونات العاب الفيديو هي نون ومصر، أمازون، فيرجن ميجاستور، جرير، ورايا شوب. يمكنك إيجاد أحدث الكوبونات لهذه المتاجر على موقع المسوق.' },
     { q: 'كيف احصل على خصم على العاب PS5؟',                             a: 'استخدم كود خصم نون مصر (ALM1) للحصول على خصم 10% إضافي على ألعاب PS5 من متجر نون، أو تصفح عروض فيرجن ميجاستور وأمازون للحصول على أفضل الأسعار.' },
     { q: 'هل يمكنني الحصول على كوبون خصم على Xbox Game Pass؟',          a: 'نعم، يمكنك الحصول على عروض Xbox Game Pass عبر منصة مايكروسوفت الرسمية، كما تجد أفضل العروض المجمعة على الأجهزة والاشتراكات في متاجر نون وجرير.' },
@@ -76,14 +77,14 @@ const faqs = [
     { q: 'هل تتوفر عروض موسمية على العاب الفيديو؟',                     a: 'نعم، تتوفر عروض موسمية كبيرة على ألعاب الفيديو في موسم الصيف، وعروض بلاك فرايداي، وعروض اليوم الوطني. تابع موقع المسوق لأحدث العروض.' },
 ];
 
-const reviews = [
+const DEFAULT_REVIEWS = [
     { name: 'أحمد السيد',    initials: 'أ', bg: '#6C3FC5', date: '15-03-2026', stars: 5, text: 'وفرت كتير على ألعاب PS5 باستخدام الكوبونات من هنا، ممتاز!' },
     { name: 'محمد علي',      initials: 'م', bg: '#00BFA5', date: '20-03-2026', stars: 5, text: 'أحسن موقع للكوبونات، وفرت أكثر من 200 جنيه على اللعبة الجديدة' },
     { name: 'خالد يوسف',    initials: 'خ', bg: '#FF6B35', date: '25-03-2026', stars: 4, text: 'الكوبونات شغالة 100% وموثوقة، أنصح بالاستخدام' },
     { name: 'عمر الفاروق',  initials: 'ع', bg: '#3F51B5', date: '28-03-2026', stars: 5, text: 'تجربة رائعة، وجدت كوبون Xbox ووفرت مبلغ كبير' },
 ];
 
-const stats = [
+const DEFAULT_STATS = [
     { icon: '🎮', value: '47',    label: 'كوبون وعرض للعاب الفيديو' },
     { icon: '🏪', value: '18',    label: 'متجر يقدم عروض على الألعاب' },
     { icon: '💰', value: '12.5%', label: 'متوسط نسبة الخصم على الألعاب' },
@@ -312,6 +313,13 @@ function Sidebar() {
 // ==================== MAIN PAGE ====================
 
 export default function CategoryDetail() {
+    const page = usePage().props;
+    const category = page.category ?? DEFAULT_CATEGORY;
+    const subCategories = page.subCategories?.length ? page.subCategories : DEFAULT_SUB_CATEGORIES;
+    const coupons = page.coupons?.length ? page.coupons : DEFAULT_COUPONS;
+    const reviews = page.reviews?.length ? page.reviews : DEFAULT_REVIEWS;
+    const faqs = page.faqItems?.length ? page.faqItems : DEFAULT_FAQS;
+    const stats = page.stats?.length ? page.stats : DEFAULT_STATS;
     const [selectedCoupon, setSelectedCoupon] = useState(null);
 
     return (

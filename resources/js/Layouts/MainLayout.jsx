@@ -171,7 +171,7 @@ function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [appModalOpen,   setAppModalOpen]   = useState(false);
 
-    const navLinks = ['جميع المتاجر', 'جميع الفئات', 'المدونة', 'تواصل معنا', 'الشروط والاحكام', 'اعلن معنا', 'عن المسوق'];
+    const navLinks = ['الرئيسية', 'جميع المتاجر', 'جميع الفئات', 'المدونة', 'تواصل معنا', 'الشروط والاحكام', 'اعلن معنا', 'عن المسوق'];
 
     return (
         <>
@@ -227,7 +227,9 @@ function Header() {
                 {/* Desktop Nav */}
                 <nav className="justify-center hidden lg:flex items-center gap-5 py-2 border-t border-gray-100">
                     {navLinks.map((link) => (
-                        link === 'جميع المتاجر'
+                        link === 'الرئيسية'
+                            ? <Link key={link} href="/" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
+                        : link === 'جميع المتاجر'
                             ? <Link key={link} href="/stores" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
                         : link === 'جميع الفئات'
                             ? <Link key={link} href="/categories" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
@@ -249,7 +251,9 @@ function Header() {
                 {mobileMenuOpen && (
                     <nav className="lg:hidden border-t border-gray-100 py-3 flex flex-col gap-1">
                         {navLinks.map((link) => (
-                            link === 'جميع المتاجر'
+                            link === 'الرئيسية'
+                                ? <Link key={link} href="/" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
+                            : link === 'جميع المتاجر'
                                 ? <Link key={link} href="/stores" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
                             : link === 'جميع الفئات'
                                 ? <Link key={link} href="/categories" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>

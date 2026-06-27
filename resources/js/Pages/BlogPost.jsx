@@ -28,7 +28,7 @@ const sideArticles = [
     { slug: 'iphone-samsung-deals',           cat: 'TECH – الإلكترونيات',      title: 'أفضل سماعات لاسلكية 2025 بأفضل الأسعار',                     img: '1505740420928-5e560c06d30e' },
 ];
 
-const reviews = [
+const DEFAULT_REVIEWS = [
     { name: 'فواز العلوي',   initials: 'ف', bg: '#00BFA5', date: '13-03-2026', stars: 5, text: '"ممتاز ويعطي كوبونات مجاناً!"' },
     { name: 'مجدي فرح',      avatar: uImg('1507003211169-0a1dd7228f2d', 120), date: '29-03-2026', stars: 5, text: '"ممتاز جداً كان تجربة رائعة للغاية، المنى من الجميع حمل التطبيق والاستمتاع بالخصم الجبار"' },
     { name: 'اسامه بن طالب', initials: 'I', bg: '#00BFA5', date: '07-03-2026', stars: 5, text: '"تجربتي كانت ممتازة جداً"' },
@@ -305,10 +305,12 @@ function ArticleNotFound() {
 
 export default function BlogPost() {
     const [showGH, setShowGH] = useState(false);
-    const { slug } = usePage().props;
+    const page = usePage().props;
+    const { slug } = page;
 
-    const article = getArticleBySlug(slug);
-    const relatedArticles = article ? getRelatedArticles(article.relatedSlugs || []) : [];
+    const article = page.article ?? getArticleBySlug(slug);
+    const relatedArticles = page.relatedArticles ?? (article ? getRelatedArticles(article.relatedSlugs || []) : []);
+    const reviews = page.reviews?.length ? page.reviews : DEFAULT_REVIEWS;
 
     return (
         <MainLayout>

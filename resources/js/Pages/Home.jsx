@@ -4,93 +4,6 @@ import MainLayout from '../Layouts/MainLayout';
 import GiftHunter from '../Components/GiftHunter';
 import NewsletterBox from '../Components/NewsletterBox';
 
-// ==================== DATA ====================
-
-const stores = [
-    { name: 'Almatar',    color: '#E91E8C', slug: 'almatar',    domain: 'almatar.com'    },
-    { name: 'Amazon',     color: '#FF9900', slug: 'amazon',     domain: 'amazon.com'     },
-    { name: 'noon',       color: '#D4A800', slug: 'noon-egypt', domain: 'noon.com'       },
-    { name: 'AliExpress', color: '#FF4747', slug: 'aliexpress', domain: 'aliexpress.com' },
-    { name: 'Waffarha',   color: '#FF6B35', slug: 'waffarha',   domain: 'waffarha.com'   },
-    { name: 'DeFacto',    color: '#222',    slug: 'defacto',    domain: 'defacto.com'    },
-    { name: 'FARFETCH',   color: '#111',    slug: 'farfetch',   domain: 'farfetch.com'   },
-    { name: 'iHerb',      color: '#5B8C3E', slug: 'iherb',      domain: 'iherb.com'      },
-    { name: 'Max',        color: '#002A5C', slug: 'max-fashion', domain: 'maxfashion.com' },
-];
-
-const categories = [
-    { name: 'جميع الفئات',         icon: '🔲', slug: 'all'          },
-    { name: 'فنادق',              icon: '🏨', slug: 'hotels'       },
-    { name: 'عطور',               icon: '🧴', slug: 'perfumes'     },
-    { name: 'العاب الفيديو',      icon: '🎮', slug: 'gaming'       },
-    { name: 'أزياء',              icon: '👗', slug: 'fashion'      },
-    { name: 'إلكترونيات',         icon: '📱', slug: 'electronics'  },
-    { name: 'الجمال والعناية',    icon: '💄', slug: 'beauty'       },
-    { name: 'الطفل',              icon: '🍼', slug: 'kids'         },
-    { name: 'رحلات',              icon: '✈️', slug: 'travel'       },
-    { name: 'مستلزمات السيارات', icon: '🚗', slug: 'automotive'   },
-    { name: 'خدمات',              icon: '🌐', slug: 'services'     },
-];
-
-const topCoupons = [
-    { store: 'Amazon',   domain: 'amazon.com',   discount: 'خصم حتى 40%',                           desc: 'خصومات أمازون حتى 40% على المقاضي والمستلزمات اليومية',         btn: 'احصل',       badge: 'جديد',    logo: '🛒', slug: 'amazon',      code: 'AMZN40'  },
-    { store: 'noon',     domain: 'noon.com',      discount: 'أقوى العروض: خصم حتى 80% + 10% إضافي', desc: 'أقوى عروض نون الحصرية: خصم حتى 80% + كود خصم 10%...',           btn: 'انسخ الكود', badge: 'جديد',    logo: '🛍️', slug: 'noon-egypt',  code: 'ALM1'    },
-    { store: 'iHerb',   domain: 'iherb.com',     discount: 'خصم حتى 65% + 20% إضافي',               desc: 'كود خصم اي هيرب: خصم حتى 65% + 20% إضافي',                     btn: 'انسخ الكود', badge: 'جديد',    logo: '🌿', slug: 'iherb',       code: 'ALM20'   },
-    { store: 'FARFETCH', domain: 'farfetch.com',  discount: 'أفضل الستايلات: خصم حتى 70%',           desc: 'خصم فارفيتش حتى 70% على ستايلات مختارة',                        btn: 'احصل',       badge: 'جديد',    logo: '👔', slug: 'farfetch',    code: null      },
-    { store: 'Noon',     domain: 'noon.com',      discount: 'خصم 10% إضافي',                         desc: 'كود خصم نون الحصري 10% إضافي على كل الموقع',                    btn: 'انسخ الكود', badge: 'جديد',    logo: '🌙', slug: 'noon-egypt',  code: 'ALM1'    },
-];
-
-const bestCoupons = [
-    { store: 'airalo',        domain: 'airalo.com',        discount: 'خصم 10% على جميع بطاقات eSIM',              desc: 'كود خصم Airalo بقيمة 10% إضافي على جميع بطاقات eSIM',             btn: 'انسخ الكود', badge: 'جديد',    logo: '📡', slug: 'airalo',        code: 'AIRALO10'  },
-    { store: 'Almatar',       domain: 'almatar.com',       discount: 'حجوزات الطيران: خصم 5% + 5% كاش باك',      desc: 'كود خصم المطار: خصم 5% على حجوزات الطيران + 5% كاش باك',          btn: 'انسخ الكود', badge: 'لا يفوت', logo: '✈️', slug: 'almatar',       code: 'ALM5'      },
-    { store: 'Trip.com',      domain: 'trip.com',          discount: 'الجولات والأنشطة: خصم حتى 15%',            desc: 'كود خصم تريب حتى 15% على الجولات والأنشطة',                       btn: 'احصل',       badge: 'جديد',    logo: '🗺️', slug: 'trip',          code: null        },
-    { store: 'ChildrenSalon', domain: 'childrensalon.com', discount: 'خصم حتى 60%',                              desc: 'تخفيضات الصيف: خصم حتى 60%',                                      btn: 'احصل',       badge: 'جديد',    logo: '👶', slug: 'childrensalon', code: null        },
-    { store: 'SQUATWOLF',     domain: 'squatwolf.com',     discount: 'خصم 15%',                                  desc: 'كود خصم سكواتوولف بقيمة 15% على كل الموقع',                       btn: 'احصل',       badge: 'جديد',    logo: '💪', slug: 'squatwolf',     code: 'WOLF15'    },
-];
-
-const bestForYou = [
-    { store: 'SQUATWOLF',  domain: 'squatwolf.com', discount: 'خصم 15%',                            desc: 'كود خصم سكواتوولف بقيمة 15% على كل الموقع',             btn: 'احصل',       badge: 'جديد',    logo: '💪', slug: 'squatwolf',   code: 'WOLF15'  },
-    { store: 'IHG Hotels', domain: 'ihg.com',        discount: 'خصم حتى 25%',                        desc: 'كود خصم IHG بنسبة 25% على حجوزات الفنادق والمنتجعات',   btn: 'احصل',       badge: 'جديد',    logo: '🏨', slug: 'ihg',         code: null      },
-    { store: 'Max',        domain: 'maxfashion.com', discount: 'خصم 10% على المنتجات غير المخفضة',   desc: 'كود خصم ماكس بقيمة 10% إضافي على أفضل المنتجات...',     btn: 'احصل',       badge: 'جديد',    logo: '🛒', slug: 'max-fashion', code: 'MAX10'   },
-    { store: 'Ubuy',       domain: 'ubuy.com',       discount: 'خصم حتى 85% + 5% إضافي',             desc: 'خصم يوباي بقيمة 85% على أفضل المنتجات + 5% إضافي',     btn: 'احصل',       badge: 'جديد',    logo: '🌍', slug: 'ubuy',        code: null      },
-    { store: 'Booking',    domain: 'booking.com',    discount: 'خصم حتى 20% على الفنادق',             desc: 'كود خصم بوكينج حتى 20% على حجوزات الفنادق حول العالم', btn: 'انسخ الكود', badge: 'جديد',    logo: '🏩', slug: 'booking',     code: 'BK20'    },
-    { store: 'Namshi',     domain: 'namshi.com',     discount: 'خصم 15% + شحن مجاني',                desc: 'كود خصم نمشي 15% على أحدث صيحات الموضة + شحن مجاني',   btn: 'انسخ الكود', badge: 'لا يفوت', logo: '👠', slug: 'namshi',      code: 'NMS15'   },
-    { store: 'H&M',        domain: 'hm.com',         discount: 'خصم 10% على كل المتجر',              desc: 'كود خصم H&M بقيمة 10% على كافة المنتجات',              btn: 'احصل',       badge: 'جديد',    logo: '🧥', slug: 'hm',          code: 'HM10'    },
-];
-
-const electronics = [
-    { store: 'Virgin Megastore', domain: 'virginmegastore.com', discount: 'خصم حتى 50%',                     desc: 'كود خصم فيرجن نستينه حتى 50% على أفضل المنتجات',  btn: 'احصل',       badge: 'جديد',    logo: '🎵', slug: 'virgin',    code: null      },
-    { store: 'DHgate',           domain: 'dhgate.com',          discount: 'خصم حتى 70%',                     desc: 'كود خصم DHgate حتى 70% على أفضل المنتجات',         btn: 'احصل',       badge: 'جديد',    logo: '🏪', slug: 'dhgate',    code: null      },
-    { store: 'HUAWEI',           domain: 'huawei.com',          discount: 'خصم 5% إضافي على جميع المنتجات', desc: 'كود خصم هواوي بقيمة 5% إضافي على جميع المنتجات',  btn: 'انسخ الكود', badge: 'جديد',    logo: '📱', slug: 'huawei',    code: 'HW5'     },
-    { store: 'RayaShop',         domain: 'rayashop.com',        discount: 'خصم 10% إضافي على كل المتجر',    desc: 'كود خصم رايه شوب بقيمة 10% إضافي على كل المتجر',  btn: 'انسخ الكود', badge: 'يوصى به', logo: '🖥️', slug: 'rayashop' },
-    { store: 'Samsung',          domain: 'samsung.com',         discount: 'خصم 8% على الهواتف والأجهزة',    desc: 'كود خصم سامسونج 8% على أحدث الهواتف والأجهزة',    btn: 'انسخ الكود', badge: 'جديد',    logo: '📲', slug: 'samsung',   code: 'SAM8'    },
-    { store: 'Noon Electronics', domain: 'noon.com',            discount: 'خصم حتى 40% + 10% إضافي',        desc: 'كود خصم نون إلكترونيات حتى 40% + 10% كود إضافي',   btn: 'احصل',       badge: 'جديد',    logo: '💻', slug: 'noon-egypt', code: 'ALM1'    },
-    { store: 'Jarir',            domain: 'jarir.com',           discount: 'خصم 5% على كل المشتريات',         desc: 'كود خصم جرير بقيمة 5% على جميع المنتجات الإلكترونية', btn: 'احصل',    badge: 'جديد',    logo: '📚', slug: 'jarir',      code: 'JRR5'    },
-];
-
-const reviews = [
-    { name: 'فواز العلوي',   date: '13-03-2026', avatar: 'ف', color: '#00BFA5', text: '"ممتاز ويعطيك كوبونات مجاناً"' },
-    { name: 'مجدي فرج',     date: '29-03-2026', avatar: 'م', color: '#3F51B5', text: '"ممتاز جداً جداً كانت تجربة رائعة للغاية، أنصح بتحميل التطبيق والاستمتاع بالخصم الجبار"' },
-    { name: 'اسامة بن طالب', date: '07-03-2026', avatar: 'أ', color: '#607D8B', text: '"تجربتي كانت ممتازة جداً"' },
-    { name: 'Abrheem Jal',  date: '10-03-2026', avatar: 'A', color: '#795548', text: '"تطبيق ممتاز ويروع عليك كثير، أنصح باستخدامه عند طلب أي شيء"' },
-];
-
-const stats = [
-    { icon: '🏷️', value: '858',    label: 'كوبونات الخصم والعروض المتاحة على موقع المسوق™' },
-    { icon: '🛒', value: '1,255',  label: 'المتاجر التي تقدم كوبونات وعروض على موقع المسوق™' },
-    { icon: '👥', value: '10,782', label: 'عدد المسوقين الشهري عبر موقع المسوق™' },
-    { icon: '💰', value: '15.37%', label: 'قيمة الخصومات المتوسطة التي يحصل عليها المستخدمون' },
-];
-
-const faqItems = [
-    { q: 'ما هو أفضل موقع خصومات؟',                                              a: 'المسوق هو أفضل موقع كوبونات خصم للمتاجر الإلكترونية والماركات ومنصات التسوق في العالم العربي وحول العالم الذي يضمن لك توفير المزيد من المال عند التسوق أونلاين.' },
-    { q: 'هل المسوق هو موقع كوبونات موثوق؟',                                      a: 'نعم، جميع أكواد الخصم والكوبونات التي نقدمها لك مضمونة 100%. عليك التأكد من مراجعة شروط وأحكام كل كود خصم عبر عرض تفاصيل بطاقة الكوبون.' },
-    { q: 'ما هي كوبونات الخصم وكيف يمكنني استخدامها؟',                            a: 'كوبونات الخصم تُعرف أيضاً بـ رموز الخصم أو أكواد الخصم وهي الكي نقدمها لك كي توفر المال عند التسوق من متاجر ومواقع التسوق عبر الإنترنت.' },
-    { q: 'هل يمكنني استخدام كود الخصم أكثر من مرة؟',                              a: 'ذلك يتوقف على شروط وأحكام الكوبون، فهناك بعض الكوبونات التي يمكن استخدامها أكثر من مرة، في حين أن بعضها يصلح للاستخدام مرة واحدة فقط.' },
-    { q: 'هل جميع المتاجر الإلكترونية تتيح لي استخدام كوبونات خصم المسوق؟',      a: 'موقع المسوق يمنحك أكثر من 800 كود خصم لأشهر المتاجر الإلكترونية في عالمنا العربي وحول العالم.' },
-    { q: 'كيف احصل على خصم إضافي عند التسوق عبر الإنترنت؟',                       a: 'استخدم كوبونات خصم المسوق وأضف كوبون المسوق عند الدفع في ملخص سلة الشراء لتحقيق الخصم الإضافي.' },
-];
-
 // ==================== SUB COMPONENTS ====================
 
 
@@ -307,7 +220,17 @@ function CouponsSection({ title, coupons, onOpen }) {
 
 // ==================== MAIN PAGE ====================
 
-export default function Home() {
+export default function Home({
+    stores = [],
+    categories = [],
+    topCoupons = [],
+    bestCoupons = [],
+    bestForYou = [],
+    electronics = [],
+    reviews = [],
+    stats = [],
+    faqItems = [],
+}) {
     const [openFaq, setOpenFaq] = useState(null);
     const [showGH, setShowGH] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState(null);

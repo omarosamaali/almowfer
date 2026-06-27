@@ -1,12 +1,16 @@
 import { useState } from 'react';
+import { router } from '@inertiajs/react';
 
 export default function NewsletterBox() {
-    const [email,      setEmail]      = useState('');
+    const [email, setEmail] = useState('');
     const [subscribed, setSubscribed] = useState(false);
 
     const submit = () => {
         if (!email.trim() || !email.includes('@')) return;
-        setSubscribed(true);
+        router.post('/newsletter', { email }, {
+            preserveScroll: true,
+            onSuccess: () => setSubscribed(true),
+        });
     };
 
     return (
