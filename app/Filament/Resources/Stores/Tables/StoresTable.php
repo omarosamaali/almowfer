@@ -6,6 +6,7 @@ use App\Filament\Support\Labels;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -31,12 +32,10 @@ class StoresTable
                 TextColumn::make('domain')
                     ->label(Labels::DOMAIN)
                     ->searchable(),
-                TextColumn::make('color')
-                    ->label(Labels::COLOR)
-                    ->searchable(),
-                TextColumn::make('text_color')
-                    ->label(Labels::TEXT_COLOR)
-                    ->searchable(),
+                ColorColumn::make('color')
+                    ->label(Labels::COLOR),
+                ColorColumn::make('text_color')
+                    ->label(Labels::TEXT_COLOR),
                 TextColumn::make('logo')
                     ->label(Labels::LOGO)
                     ->searchable(),

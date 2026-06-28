@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Stores\Schemas;
 
 use App\Filament\Support\Labels;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -30,9 +31,9 @@ class StoreForm
                 TextInput::make('domain')
                     ->label(Labels::DOMAIN)
                     ->required(),
-                TextInput::make('color')
+                ColorPicker::make('color')
                     ->label(Labels::COLOR),
-                TextInput::make('text_color')
+                ColorPicker::make('text_color')
                     ->label(Labels::TEXT_COLOR),
                 TextInput::make('logo')
                     ->label(Labels::LOGO),
