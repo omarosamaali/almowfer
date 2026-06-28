@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class FaqResource extends Resource
 {
@@ -36,6 +37,11 @@ class FaqResource extends Resource
     public static function table(Table $table): Table
     {
         return FaqsTable::configure($table);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with(['store', 'category']);
     }
 
     public static function getRelations(): array

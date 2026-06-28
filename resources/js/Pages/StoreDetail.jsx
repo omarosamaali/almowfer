@@ -287,6 +287,12 @@ function SideStoreLogo2({ domain, name, color }) {
 }
 
 function CouponCard({ coupon, onOpen, store = DEFAULT_STORE }) {
+    const badges = Array.isArray(coupon.badges)
+        ? coupon.badges
+        : coupon.badges
+            ? [coupon.badges]
+            : [];
+
     const badgeColor = (b) => {
         if (b === 'جديد')          return 'bg-[#FF4081] text-white';
         if (b === 'الأكثر مبيعاً') return 'bg-orange-500 text-white';
@@ -308,7 +314,7 @@ function CouponCard({ coupon, onOpen, store = DEFAULT_STORE }) {
             <div className="p-4">
                 {/* Badges */}
                 <div className="flex gap-1.5 flex-wrap justify-end mb-3">
-                    {coupon.badges.map((b, i) => (
+                    {badges.map((b, i) => (
                         <span key={i} className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor(b)}`}>{b}</span>
                     ))}
                 </div>
@@ -476,12 +482,15 @@ function Sidebar({ onGiftHunter, store = DEFAULT_STORE, sideStores = sideStoresD
 
 export default function StoreDetail() {
     const page = usePage().props;
+
+    console.log(page);
+
     const store = page.store ?? DEFAULT_STORE;
     const coupons = page.coupons?.length ? page.coupons : DEFAULT_COUPONS;
     const couponTable = page.couponTable?.length ? page.couponTable : DEFAULT_COUPON_TABLE;
     const similarStores = page.similarStores?.length ? page.similarStores : DEFAULT_SIMILAR_STORES;
     const reviews = page.reviews?.length ? page.reviews : DEFAULT_REVIEWS;
-    const faqs = page.faqItems?.length ? page.faqItems : DEFAULT_FAQS;
+    const faqs = page.faqItems ?? [];
     const topStores = page.topStores?.length ? page.topStores : sideStoresDefault;
     const [showGH, setShowGH] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState(null);

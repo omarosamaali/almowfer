@@ -76,7 +76,7 @@ Route::get('/store/{slug}', function (string $slug) use ($frontend) {
         ...$data,
         'similarStores' => $frontend->topStores(6),
         'reviews' => $frontend->reviews(),
-        'faqItems' => $frontend->faqs('store'),
+        'faqItems' => $frontend->faqs('store', storeSlug: $slug),
         'topStores' => $frontend->topStores(),
     ]);
 });
@@ -88,7 +88,7 @@ Route::get('/category/{slug}', function (string $slug) use ($frontend) {
     return Inertia::render('CategoryDetail', [
         ...$data,
         'reviews' => $frontend->reviews(),
-        'faqItems' => $frontend->faqs('category'),
+        'faqItems' => $frontend->faqs('category', categorySlug: $slug),
         'stats' => $frontend->stats('home'),
         'topStores' => $frontend->topStores(),
     ]);

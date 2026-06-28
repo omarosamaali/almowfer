@@ -318,7 +318,7 @@ export default function CategoryDetail() {
     const subCategories = page.subCategories?.length ? page.subCategories : DEFAULT_SUB_CATEGORIES;
     const coupons = page.coupons?.length ? page.coupons : DEFAULT_COUPONS;
     const reviews = page.reviews?.length ? page.reviews : DEFAULT_REVIEWS;
-    const faqs = page.faqItems?.length ? page.faqItems : DEFAULT_FAQS;
+    const faqs = page.faqItems ?? [];
     const stats = page.stats?.length ? page.stats : DEFAULT_STATS;
     const [selectedCoupon, setSelectedCoupon] = useState(null);
 

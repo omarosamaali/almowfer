@@ -142,7 +142,7 @@ class FrontendDataService
                 'title' => $c->title,
                 'desc' => $c->description,
                 'discount' => $c->discount,
-                'badges' => $c->badges ?? [],
+                'badges' => Coupon::normalizeBadges($c->badges),
                 'usedToday' => $c->used_today,
                 'lastUsed' => $c->last_used,
                 'lastSaving' => $c->last_saving,
@@ -342,11 +342,25 @@ class FrontendDataService
             ->all();
     }
 
-    public function faqs(string $context = 'home'): array
+    public function faqs(string $context, ?string $storeSlug = null, ?string $categorySlug = null): array
     {
-        return Faq::query()
+        $query = Faq::query()
             ->where('is_active', true)
-            ->where('context', $context)
+            ->where('context', $context);
+
+        if (in_array($context, ['home', 'advertise'], true)) {
+            $query->whereNull('store_id')->whereNull('category_id');
+        }
+
+        if ($context === 'store' && $storeSlug) {
+            $query->whereHas('store', fn ($q) => $q->where('slug', $storeSlug));
+        }
+
+        if ($context === 'category' && $categorySlug) {
+            $query->whereHas('category', fn ($q) => $q->where('slug', $categorySlug));
+        }
+
+        return $query
             ->orderBy('sort_order')
             ->get()
             ->map(fn (Faq $f) => ['q' => $f->question, 'a' => $f->answer])

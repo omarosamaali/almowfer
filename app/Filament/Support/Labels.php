@@ -84,6 +84,14 @@ final class Labels
 
     public const CONTEXT = 'السياق';
 
+    public const PLACEMENT = 'مكان العرض';
+
+    public const TARGET = 'الهدف';
+
+    public const TARGET_STORE = 'المتجر';
+
+    public const TARGET_CATEGORY = 'الفئة';
+
     public const REVIEWABLE_TYPE = 'نوع المراجع';
 
     public const REVIEWABLE_ID = 'معرّف المراجع';

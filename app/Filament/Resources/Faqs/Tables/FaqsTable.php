@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Faqs\Tables;
 
+use App\Enums\FaqContext;
 use App\Filament\Support\Labels;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -20,8 +21,23 @@ class FaqsTable
                     ->label(Labels::QUESTION)
                     ->searchable(),
                 TextColumn::make('context')
-                    ->label(Labels::CONTEXT)
+                    ->label(Labels::PLACEMENT)
+                    ->formatStateUsing(fn (?string $state): string => FaqContext::labelFor($state))
+                    ->badge()
                     ->searchable(),
+                TextColumn::make('target')
+                    ->label(Labels::TARGET)
+                    ->state(function ($record): string {
+                        if ($record->context === FaqContext::Store->value) {
+                            return $record->store?->name ?? '—';
+                        }
+
+                        if ($record->context === FaqContext::Category->value) {
+                            return $record->category?->name ?? '—';
+                        }
+
+                        return '—';
+                    }),
                 TextColumn::make('sort_order')
                     ->label(Labels::SORT_ORDER)
                     ->numeric()

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Coupons\Schemas;
 
 use App\Filament\Support\Labels;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -35,9 +36,9 @@ class CouponForm
                     ->label(Labels::CODE),
                 TextInput::make('type')
                     ->label(Labels::TYPE),
-                Textarea::make('badges')
+                TagsInput::make('badges')
                     ->label(Labels::BADGES)
-                    ->columnSpanFull(),
+                    ->separator(','),
                 TextInput::make('btn_label')
                     ->label(Labels::BTN_LABEL),
                 TextInput::make('badge')
