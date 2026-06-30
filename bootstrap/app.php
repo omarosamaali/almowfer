@@ -14,6 +14,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
         ]);
+
+        $middleware->alias([
+            // 'LanguageSwitcher' => \App\Http\Middleware\LanguageSwitcher::class,
+            'is_valid_tenant' => \App\Http\Middleware\IsValidTenant::class,
+            'check_subscription' => \App\Http\Middleware\CheckSubscription::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

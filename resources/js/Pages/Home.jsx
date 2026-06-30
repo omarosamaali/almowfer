@@ -113,7 +113,7 @@ function CouponCard({ coupon, onOpen }) {
                 onClick={handleClick}
                 className="mt-auto w-full bg-[#00BFA5] hover:bg-[#00A896] active:scale-95 text-white font-bold py-2 rounded-xl text-sm transition-all"
             >
-                {coupon.btn === 'انسخ الكود' ? 'انسخ الكود' : 'معاينة'}
+                {coupon.btn === 'انسخ الكود' ? 'انسخ الكود' : 'استخدمه الآن'}
             </button>
         </div>
     );
@@ -371,26 +371,6 @@ export default function Home({
 
                     </div>
                 </div>
-
-                {/* ===== SEO CONTENT ===== */}
-                <section className="mt-8 bg-white rounded-2xl p-4 sm:p-8 shadow-sm text-right space-y-5">
-                    <div>
-                        <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-2">كوبونات خصم وعروض المسوق 2026</h2>
-                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">افضل موقع يعطيك كود خصم في العالم العربي</h3>
-                        <p className="text-sm text-gray-700 leading-relaxed">أهلاً وسهلاً بك في المسوق Almowafir، وهو عبارة عن أفضل موقع يعطيك كود خصم لتوفير المزيد من المال عند التسوق عبر الإنترنت مستفيداً من أقوى كوبونات وأكواد الخصم الحصرية.</p>
-                    </div>
-                    {[
-                        { title: 'ما هو موقع المسوق؟',                        text: 'موقع Almowafir هو أفضل موقع كوبونات خصم في العالم العربي، يساعدك على توفير المال المحقق عند التسوق عبر الإنترنت، حيث تجد فيه أي كود خصم أو كوبون خاص بالمتاجر الإلكترونية في دول الخليج والشرق الأوسط وحول العالم.' },
-                        { title: 'أهم موقع كوبون خصم',                        text: 'احصل على أقوى كوبون خصم لتحقق تخفيضات إضافية على كل عملية تسوق عبر الإنترنت، حيث يمكنك استخدام كود خصم المسوق في ملخص السلة لتطبيق الخصم الإضافي المقدم.' },
-                        { title: 'موقع كوبونات مجاني 100%',                   text: 'المسوق هو موقع كوبونات مجاني 100%، يقدم لك جميع الخدمات دون مقابل، ليضمن لك توفير المال المحقق في كل مرة تقوم فيها بالشراء عبر الإنترنت.' },
-                        { title: 'اكستنشن المسوق – مكتشف اكواد الخصم',       text: 'مكتشف اكواد الخصم من Almowafir هو اكستنشن كروم يقوم بالعثور لأجلك على كوبون الخصم الخاص بالمتجر الذي تقوم بالتسوق منه، ثم تطبيقه تلقائياً في ملخص سلة الشراء، بحيث لا تفوتك أي فرصة لتوفير المال عند التسوق أونلاين.' },
-                    ].map((s, i) => (
-                        <div key={i}>
-                            <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">{s.title}</h3>
-                            <p className="text-sm text-gray-700 leading-relaxed">{s.text}</p>
-                        </div>
-                    ))}
-                </section>
 
             </main>
             <GiftHunter open={showGH} onClose={() => setShowGH(false)} />

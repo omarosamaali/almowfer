@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
+import { useTenantUrl } from '../utils/useTenantUrl';
 
 // ==================== FOOTER DATA ====================
 
@@ -170,8 +171,18 @@ function Header() {
     const [searchQuery,    setSearchQuery]    = useState('');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [appModalOpen,   setAppModalOpen]   = useState(false);
+    const url = useTenantUrl();
 
-    const navLinks = ['الرئيسية', 'جميع المتاجر', 'جميع الفئات', 'المدونة', 'تواصل معنا', 'الشروط والاحكام', 'اعلن معنا', 'عن المسوق'];
+    const navLinks = [
+        { label: 'الرئيسية', href: url('/') },
+        { label: 'جميع المتاجر', href: url('/stores') },
+        { label: 'جميع الفئات', href: url('/categories') },
+        { label: 'المدونة', href: url('/blog') },
+        { label: 'تواصل معنا', href: url('/contact') },
+        { label: 'الشروط والاحكام', href: url('/terms') },
+        { label: 'اعلن معنا', href: url('/advertise') },
+        { label: 'عن المسوق', href: url('/about') },
+    ];
 
     return (
         <>
@@ -182,10 +193,10 @@ function Header() {
                 <div className="flex items-center justify-between py-2 sm:py-3 gap-2 sm:gap-4">
 
                     {/* Logo */}
-                    <a href="/" className="flex items-center gap-2 shrink-0">
+                    <Link href={url('/')} className="flex items-center gap-2 shrink-0">
                         <span className="text-lg sm:text-2xl font-black text-transparent bg-clip-text bg-linear-to-l from-[#00BFA5] to-[#4CAF50]">المُسوق</span>
                         <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-linear-to-br from-[#00BFA5] to-[#4CAF50] flex items-center justify-center text-white font-bold text-base sm:text-lg">م</div>
-                    </a>
+                    </Link>
 
                     {/* Search */}
                     <div className="flex-1 max-w-xs sm:max-w-sm lg:max-w-xl">
@@ -227,23 +238,9 @@ function Header() {
                 {/* Desktop Nav */}
                 <nav className="justify-center hidden lg:flex items-center gap-5 py-2 border-t border-gray-100">
                     {navLinks.map((link) => (
-                        link === 'الرئيسية'
-                            ? <Link key={link} href="/" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'جميع المتاجر'
-                            ? <Link key={link} href="/stores" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'جميع الفئات'
-                            ? <Link key={link} href="/categories" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'المدونة'
-                            ? <Link key={link} href="/blog" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'تواصل معنا'
-                            ? <Link key={link} href="/contact" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'الشروط والاحكام'
-                            ? <Link key={link} href="/terms" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'اعلن معنا'
-                            ? <Link key={link} href="/advertise" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                        : link === 'عن المسوق'
-                            ? <Link key={link} href="/about" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</Link>
-                            : <a key={link} href="#" className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">{link}</a>
+                        <Link key={link.label} href={link.href} className="text-sm text-gray-700 hover:text-[#00BFA5] transition-colors whitespace-nowrap">
+                            {link.label}
+                        </Link>
                     ))}
                 </nav>
 
@@ -251,23 +248,9 @@ function Header() {
                 {mobileMenuOpen && (
                     <nav className="lg:hidden border-t border-gray-100 py-3 flex flex-col gap-1">
                         {navLinks.map((link) => (
-                            link === 'الرئيسية'
-                                ? <Link key={link} href="/" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'جميع المتاجر'
-                                ? <Link key={link} href="/stores" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'جميع الفئات'
-                                ? <Link key={link} href="/categories" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'المدونة'
-                                ? <Link key={link} href="/blog" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'تواصل معنا'
-                                ? <Link key={link} href="/contact" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'الشروط والاحكام'
-                                ? <Link key={link} href="/terms" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'اعلن معنا'
-                                ? <Link key={link} href="/advertise" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                            : link === 'عن المسوق'
-                                ? <Link key={link} href="/about" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</Link>
-                                : <a key={link} href="#" className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">{link}</a>
+                            <Link key={link.label} href={link.href} className="text-sm text-gray-700 hover:text-[#00BFA5] py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
+                                {link.label}
+                            </Link>
                         ))}
                         <div className="flex items-center gap-4 px-3 pt-2 border-t border-gray-100 mt-1">
                             <CountrySelector />
