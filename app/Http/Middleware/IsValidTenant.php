@@ -16,6 +16,14 @@ class IsValidTenant
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $tenantPrefix = resolveTenantPrefix($request);
+
+        if (! $tenantPrefix) {
+            abort(404);
+        }
+
+        session(['tenant_prefix' => $tenantPrefix]);
+
         $tenantDetails = getTenantDetails();
 
         if (!$tenantDetails['success'])

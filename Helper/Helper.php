@@ -46,17 +46,72 @@ use App\Models\Admin\Tenant as AdminTenant;
 // }
 
 // check if function getTenantPrefix
+if (! function_exists('isValidTenantSegment')) {
+    function isValidTenantSegment(?string $segment): bool
+    {
+        if (! $segment) {
+            return false;
+        }
+
+        if ($segment === 'admin') {
+            return false;
+        }
+
+        if (str_starts_with($segment, 'livewire')) {
+            return false;
+        }
+
+        $reserved = ['api', 'up', 'build', 'vendor', 'storage', 'sanctum'];
+
+        if (in_array($segment, $reserved, true)) {
+            return false;
+        }
+
+        return (bool) preg_match('/^[a-zA-Z0-9_-]+$/', $segment);
+    }
+}
+
+if (! function_exists('resolveTenantPrefix')) {
+    function resolveTenantPrefix(?\Illuminate\Http\Request $request = null): ?string
+    {
+        $request = $request ?? request();
+
+        if (session()->has('tenant_prefix')) {
+            return session('tenant_prefix');
+        }
+
+        if ($tenant = $request->route('tenant')) {
+            return $tenant;
+        }
+
+        $segment = $request->segment(1);
+        if (isValidTenantSegment($segment)) {
+            return $segment;
+        }
+
+        if ($referer = $request->header('referer')) {
+            $path = parse_url($referer, PHP_URL_PATH) ?: '';
+            $parts = array_values(array_filter(explode('/', trim($path, '/'))));
+
+            foreach ($parts as $index => $part) {
+                if ($part === 'admin' && $index > 0 && isValidTenantSegment($parts[$index - 1])) {
+                    return $parts[$index - 1];
+                }
+            }
+
+            if (isset($parts[0]) && isValidTenantSegment($parts[0])) {
+                return $parts[0];
+            }
+        }
+
+        return null;
+    }
+}
+
 if (!function_exists('getTenantPrefix')) {
     function getTenantPrefix()
     {
-        $prefix = Request::segment(1);
-        // $allKeyLangs = getAllKeyLangs();
-        // // some times path starting with ar/ or en/ or etc.
-        // // so we need to skip first prefix if it is in $allKeyLangs
-        // if (in_array($prefix, $allKeyLangs)) {
-        //     $prefix = Request::segment(2);
-        // }
-        return $prefix;
+        return resolveTenantPrefix() ?? Request::segment(1);
     }
 }
 

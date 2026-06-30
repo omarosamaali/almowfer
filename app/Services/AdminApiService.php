@@ -89,10 +89,16 @@ class AdminApiService
         }
     }
 
-    public function storeTokenFromLogin(string $email, #[\SensitiveParameter] string $password): void
+    /**
+     * @return array<string, mixed>
+     */
+    public function attemptLogin(string $email, #[\SensitiveParameter] string $password): array
     {
         if (! $this->baseUrl()) {
-            return;
+            return [
+                'success' => false,
+                'message' => 'Admin API غير مُعد.',
+            ];
         }
 
         try {
@@ -101,20 +107,34 @@ class AdminApiService
                 'password' => $password,
             ]);
 
-            if (! $response->successful()) {
-                return;
-            }
-
-            $responseData = $response->json();
+            $responseData = $response->json() ?? [];
 
             if (
-                ($responseData['success'] ?? false) === true
+                $response->successful()
+                && ($responseData['success'] ?? false) === true
                 && isset($responseData['data']['token'])
             ) {
                 Cookie::queue('admin_api_token', $responseData['data']['token'], 60 * 24 * 30);
+
+                return $responseData;
             }
+
+            return [
+                'success' => false,
+                'message' => $responseData['message'] ?? 'بيانات الاعتماد غير صحيحة.',
+            ];
         } catch (\Exception $e) {
-            Log::error('Failed to get admin API token: '.$e->getMessage());
+            Log::error('Failed to authenticate with admin API: '.$e->getMessage());
+
+            return [
+                'success' => false,
+                'message' => 'تعذر الاتصال بـ Admin API.',
+            ];
         }
+    }
+
+    public function storeTokenFromLogin(string $email, #[\SensitiveParameter] string $password): void
+    {
+        $this->attemptLogin($email, $password);
     }
 }

@@ -17,6 +17,11 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Admin', 'password' => 'password']
         );
 
+        User::updateOrCreate(
+            ['email' => 'a.mansour.code@gmail.com'],
+            ['name' => 'Admin', 'password' => 'password']
+        );
+
         $this->call([
             CategorySeeder::class,
             StoreSeeder::class,
