@@ -137,4 +137,36 @@ class AdminApiService
     {
         $this->attemptLogin($email, $password);
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function setDomain(string $domain): array
+    {
+        if (! $this->baseUrl()) {
+            return [
+                'success' => false,
+                'message' => 'Admin API غير مُعد.',
+            ];
+        }
+
+        try {
+            $response = Http::withHeaders($this->headers())
+                ->post($this->baseUrl().'/api/set-domain', [
+                    'domain' => $domain,
+                ]);
+
+            return $response->json() ?? [
+                'success' => false,
+                'message' => 'استجابة غير صالحة من Admin API.',
+            ];
+        } catch (\Exception $e) {
+            Log::error('Error setting domain: '.$e->getMessage());
+
+            return [
+                'success' => false,
+                'message' => 'حدث خطأ أثناء إرسال طلب النطاق.',
+            ];
+        }
+    }
 }
