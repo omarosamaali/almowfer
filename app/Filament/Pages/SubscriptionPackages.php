@@ -6,6 +6,7 @@ use App\Services\AdminApiService;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
 
 class SubscriptionPackages extends Page
 {
@@ -13,11 +14,13 @@ class SubscriptionPackages extends Page
 
     protected static ?string $navigationLabel = 'باقات الاشتراك';
 
+    protected static string|UnitEnum|null $navigationGroup = 'الإعدادات';
+
     protected static ?string $title = 'اختر باقة الاشتراك';
 
     protected static ?string $slug = 'subscription-packages';
 
-    protected static ?int $navigationSort = -100;
+    protected static ?int $navigationSort = 5;
 
     protected string $view = 'filament.pages.subscription-packages';
 

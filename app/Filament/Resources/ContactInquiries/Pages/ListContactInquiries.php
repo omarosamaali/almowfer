@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\ContactInquiries\Pages;
 
 use App\Filament\Resources\ContactInquiries\ContactInquiryResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListContactInquiries extends ListRecords
@@ -12,8 +11,6 @@ class ListContactInquiries extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            CreateAction::make(),
-        ];
+        return [];
     }
 }

@@ -4,9 +4,9 @@ namespace App\Filament\Resources\ContactInquiries\Pages;
 
 use App\Filament\Resources\ContactInquiries\ContactInquiryResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditContactInquiry extends EditRecord
+class ViewContactInquiry extends ViewRecord
 {
     protected static string $resource = ContactInquiryResource::class;
 

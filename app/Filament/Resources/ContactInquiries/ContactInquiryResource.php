@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\ContactInquiries;
 
-use App\Filament\Resources\ContactInquiries\Pages\CreateContactInquiry;
-use App\Filament\Resources\ContactInquiries\Pages\EditContactInquiry;
 use App\Filament\Resources\ContactInquiries\Pages\ListContactInquiries;
+use App\Filament\Resources\ContactInquiries\Pages\ViewContactInquiry;
 use App\Filament\Resources\ContactInquiries\Schemas\ContactInquiryForm;
 use App\Filament\Resources\ContactInquiries\Tables\ContactInquiriesTable;
 use App\Models\ContactInquiry;
@@ -13,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class ContactInquiryResource extends Resource
 {
@@ -26,7 +26,7 @@ class ContactInquiryResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'الاستفسارات';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleLeftRight;
 
     public static function form(Schema $schema): Schema
     {
@@ -36,6 +36,16 @@ class ContactInquiryResource extends Resource
     public static function table(Table $table): Table
     {
         return ContactInquiriesTable::configure($table);
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return false;
     }
 
     public static function getRelations(): array
@@ -49,8 +59,7 @@ class ContactInquiryResource extends Resource
     {
         return [
             'index' => ListContactInquiries::route('/'),
-            'create' => CreateContactInquiry::route('/create'),
-            'edit' => EditContactInquiry::route('/{record}/edit'),
+            'view' => ViewContactInquiry::route('/{record}'),
         ];
     }
 }

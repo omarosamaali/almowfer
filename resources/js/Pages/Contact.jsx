@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useForm, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import GiftHunter from '../Components/GiftHunter';
 import NewsletterBox from '../Components/NewsletterBox';
+import { useTenantUrl } from '../utils/useTenantUrl';
 
 // ==================== DATA ====================
 
@@ -71,6 +73,29 @@ function HelpItem({ icon, title, desc }) {
 
 export default function Contact() {
     const [showGH, setShowGH] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const url = useTenantUrl();
+    const { flash } = usePage().props;
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+    });
+
+    const submitContact = (e) => {
+        e.preventDefault();
+        post(url('/contact'), {
+            preserveScroll: true,
+            onSuccess: () => {
+                reset();
+                setSubmitted(true);
+            },
+        });
+    };
+
+    const showSuccess = submitted || flash?.success;
+
     return (
         <MainLayout>
             <div className="bg-gray-50 min-h-screen">
@@ -228,6 +253,87 @@ export default function Contact() {
                                 <p className="text-sm text-gray-500 leading-relaxed">
                                     سواء اكتشفت كود خصم لا يعمل، أو تريد اقتراح متجر جديد، أو لديك سؤال عن التطبيق، أو مجرد تريد التواصل معنا – فريق المسوق هنا من أجلك. نحن نشر حقيقيون نحب مساعدة مجتمعنا على التوفير أكثر، ونأخذ كل رسالة بجدية تامة.
                                 </p>
+                            </div>
+
+                            {/* Contact form */}
+                            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm text-right">
+                                <h2 className="text-xl font-black text-gray-800 mb-2 flex items-center justify-end gap-2">
+                                    <span>أرسل لنا رسالة</span>
+                                    <span className="text-2xl">✉️</span>
+                                </h2>
+                                <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+                                    املأ النموذج أدناه وسيتواصل معك فريقنا في أقرب وقت ممكن.
+                                </p>
+
+                                {showSuccess && (
+                                    <div className="mb-5 rounded-xl bg-green-50 border border-green-200 text-green-800 px-4 py-3 text-sm font-bold">
+                                        {flash?.success || 'تم إرسال رسالتك بنجاح.'}
+                                    </div>
+                                )}
+
+                                <form onSubmit={submitContact} className="flex flex-col gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label htmlFor="contact-name" className="block text-sm font-bold text-gray-700 mb-1.5">الاسم *</label>
+                                            <input
+                                                id="contact-name"
+                                                type="text"
+                                                value={data.name}
+                                                onChange={(e) => setData('name', e.target.value)}
+                                                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-[#00BFA5] focus:ring-2 focus:ring-[#00BFA5]/20"
+                                                placeholder="اسمك الكامل"
+                                            />
+                                            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                                        </div>
+                                        <div>
+                                            <label htmlFor="contact-email" className="block text-sm font-bold text-gray-700 mb-1.5">البريد الإلكتروني *</label>
+                                            <input
+                                                id="contact-email"
+                                                type="email"
+                                                dir="ltr"
+                                                value={data.email}
+                                                onChange={(e) => setData('email', e.target.value)}
+                                                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-[#00BFA5] focus:ring-2 focus:ring-[#00BFA5]/20"
+                                                placeholder="example@email.com"
+                                            />
+                                            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="contact-subject" className="block text-sm font-bold text-gray-700 mb-1.5">الموضوع</label>
+                                        <input
+                                            id="contact-subject"
+                                            type="text"
+                                            value={data.subject}
+                                            onChange={(e) => setData('subject', e.target.value)}
+                                            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-[#00BFA5] focus:ring-2 focus:ring-[#00BFA5]/20"
+                                            placeholder="موضوع الرسالة"
+                                        />
+                                        {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="contact-message" className="block text-sm font-bold text-gray-700 mb-1.5">الرسالة *</label>
+                                        <textarea
+                                            id="contact-message"
+                                            rows={5}
+                                            value={data.message}
+                                            onChange={(e) => setData('message', e.target.value)}
+                                            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 resize-y focus:outline-none focus:border-[#00BFA5] focus:ring-2 focus:ring-[#00BFA5]/20"
+                                            placeholder="اكتب رسالتك هنا..."
+                                        />
+                                        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={processing}
+                                        className="self-end bg-[#00BFA5] hover:bg-[#00a892] disabled:opacity-60 text-white font-black py-3 px-8 rounded-xl transition-colors"
+                                    >
+                                        {processing ? 'جاري الإرسال...' : 'إرسال الرسالة'}
+                                    </button>
+                                </form>
                             </div>
 
                             {/* How can we help */}

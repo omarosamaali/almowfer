@@ -25,6 +25,7 @@ class ContactInquiryForm
                 Textarea::make('message')
                     ->label(Labels::MESSAGE)
                     ->required()
+                    ->rows(6)
                     ->columnSpanFull(),
             ]);
     }
