@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             // 'LanguageSwitcher' => \App\Http\Middleware\LanguageSwitcher::class,
             'is_valid_tenant' => \App\Http\Middleware\IsValidTenant::class,
             'check_subscription' => \App\Http\Middleware\CheckSubscription::class,
+            'check_filament_subscription' => \App\Http\Middleware\CheckFilamentSubscription::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

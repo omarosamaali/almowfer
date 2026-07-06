@@ -2,25 +2,32 @@
 
 namespace App\Http\Middleware;
 
+use App\Filament\Pages\SubscriptionPackages;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckSubscription
+class CheckFilamentSubscription
 {
     /**
-     * Handle an incoming request.
-     *
+     * @var list<string>
+     */
+    protected array $allowedRoutes = [
+        'filament.admin.pages.subscription-packages',
+        'filament.admin.pages.subscription-checkout',
+    ];
+
+    /**
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->routeIs('subscribePage') || $request->routeIs('subscribe.processPayment') || $request->routeIs('subscribe.checkout')) {
+        if ($request->routeIs($this->allowedRoutes)) {
             return $next($request);
         }
 
         if (isSubscriptionExpired()) {
-            return redirect()->route('subscribePage', ['tenant' => getTenantPrefix()]);
+            return redirect(SubscriptionPackages::getUrl());
         }
 
         return $next($request);

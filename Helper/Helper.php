@@ -158,6 +158,16 @@ if (!function_exists('getTenantDetails')) {
     }
 }
 
+if (! function_exists('isSubscriptionExpired')) {
+    function isSubscriptionExpired(): bool
+    {
+        $tenantDetails = getTenantDetails();
+        $endDate = $tenantDetails['data']['tenant_subscription']['end_date'] ?? null;
+
+        return $endDate && date('Y-m-d', strtotime($endDate)) < date('Y-m-d', strtotime(now()));
+    }
+}
+
 // check if function tenantConnectionDatabase
 if (!function_exists('adminConnectionDatabase')) {
     function adminConnectionDatabase()

@@ -34,10 +34,10 @@ class CategoriesTable
                 IconColumn::make('is_light')
                     ->label(Labels::IS_LIGHT)
                     ->boolean(),
-                TextColumn::make('sort_order')
-                    ->label(Labels::SORT_ORDER)
-                    ->numeric()
-                    ->sortable(),
+                // TextColumn::make('sort_order')
+                //     ->label(Labels::SORT_ORDER)
+                //     ->numeric()
+                //     ->sortable(),
                 IconColumn::make('is_active')
                     ->label(Labels::IS_ACTIVE)
                     ->boolean(),

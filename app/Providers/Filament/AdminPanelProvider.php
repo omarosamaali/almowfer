@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Pages\Login;
+use App\Http\Middleware\CheckFilamentSubscription;
 use App\Http\Middleware\IsValidTenant;
 use App\Http\Middleware\SetAdminLocale;
 use Filament\Http\Middleware\Authenticate;
@@ -67,6 +68,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                CheckFilamentSubscription::class,
             ]);
     }
 }
