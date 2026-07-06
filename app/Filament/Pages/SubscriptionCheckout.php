@@ -42,6 +42,16 @@ class SubscriptionCheckout extends Page
                 ->send();
 
             $this->redirect(SubscriptionPackages::getUrl());
+
+            return;
+        }
+
+        $billingPeriod = request()->query('billing_period');
+
+        if (in_array($billingPeriod, ['monthly', 'yearly'], true)) {
+            $this->billingPeriod = $billingPeriod;
+        } else {
+            $this->billingPeriod = strtolower($this->selectedPackage['plan'] ?? 'monthly');
         }
     }
 

@@ -36,18 +36,79 @@
                 <p class="sub-empty__text">لا توجد باقات متاحة حالياً.<br>تأكد من اتصال Admin API ثم حاول مرة أخرى.</p>
             </div>
         @else
-            <div class="sub-grid">
-                @foreach ($packages as $index => $package)
+            @php
+                $monthlyCount = collect($packages)->filter(
+                    fn ($package) => strtolower($package['plan'] ?? 'monthly') === 'monthly'
+                )->count();
+                $yearlyCount = collect($packages)->filter(
+                    fn ($package) => strtolower($package['plan'] ?? 'monthly') === 'yearly'
+                )->count();
+
+                $featuredIds = [];
+                foreach (['monthly', 'yearly'] as $planType) {
+                    $planPackages = collect($packages)
+                        ->filter(fn ($package) => strtolower($package['plan'] ?? 'monthly') === $planType)
+                        ->values();
+
+                    if ($planPackages->count() >= 3) {
+                        $featuredIds[] = $planPackages[1]['id'] ?? null;
+                    }
+                }
+            @endphp
+
+            <div
+                class="sub-page__billing"
+                x-data="{ billingPeriod: 'monthly' }"
+            >
+                <div class="sub-billing-toggle" role="group" aria-label="مدة الفوترة">
+                    <button
+                        type="button"
+                        class="sub-billing-toggle__btn"
+                        :class="{ 'sub-billing-toggle__btn--active': billingPeriod === 'monthly' }"
+                        @click="billingPeriod = 'monthly'"
+                    >
+                        شهرياً
+                    </button>
+                    <button
+                        type="button"
+                        class="sub-billing-toggle__btn"
+                        :class="{ 'sub-billing-toggle__btn--active': billingPeriod === 'yearly' }"
+                        @click="billingPeriod = 'yearly'"
+                    >
+                        سنوياً
+                    </button>
+                </div>
+
+                <div
+                    class="sub-empty sub-empty--period"
+                    x-show="(billingPeriod === 'monthly' && {{ $monthlyCount }} === 0) || (billingPeriod === 'yearly' && {{ $yearlyCount }} === 0)"
+                    x-cloak
+                >
+                    <svg class="sub-empty__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                    </svg>
+                    <p class="sub-empty__text">لا توجد باقات لهذه المدة حالياً.</p>
+                </div>
+
+                <div class="sub-grid">
+                @foreach ($packages as $package)
                     @php
-                        $isFeatured = count($packages) >= 3 && $index === 1;
+                        $packagePlan = strtolower($package['plan'] ?? 'monthly');
+                        $isFeatured = in_array($package['id'] ?? null, $featuredIds, true);
+                        $periodLabel = $packagePlan === 'yearly' ? '/ سنة' : '/ شهر';
                     @endphp
-                    <article class="sub-card {{ $isFeatured ? 'sub-card--featured' : '' }}">
+                    <article
+                        class="sub-card {{ $isFeatured ? 'sub-card--featured' : '' }}"
+                        data-plan="{{ $packagePlan }}"
+                        x-show="billingPeriod === '{{ $packagePlan }}'"
+                        x-cloak
+                    >
                         @if ($isFeatured)
                             <span class="sub-card__badge">الأكثر شعبية</span>
                         @endif
 
-                        @if (! empty($package['plan']))
-                            <span class="sub-card__plan">{{ $package['plan'] }}</span>
+                        @if (! empty($package['trial_days']))
+                            <span class="sub-card__trial">{{ $package['trial_days'] }} يوم تجريبي</span>
                         @endif
 
                         <h2 class="sub-card__name">{{ $package['name'] ?? '' }}</h2>
@@ -55,7 +116,7 @@
                         <div class="sub-card__price-wrap">
                             <div class="sub-card__price">
                                 {{ $package['price'] ?? '' }}
-                                <span class="sub-card__period">/ شهر</span>
+                                <span class="sub-card__period">{{ $periodLabel }}</span>
                             </div>
                         </div>
 
@@ -68,20 +129,21 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                             </svg>
                                         </span>
-                                        <span>{{ $feature }}</span>
+                                        <span>{{ is_array($feature) ? ($feature['name'] ?? '') : $feature }}</span>
                                     </li>
                                 @endforeach
                             </ul>
                         @endif
 
                         <a
-                            href="{{ \App\Filament\Pages\SubscriptionCheckout::getUrl() }}?package_id={{ $package['id'] }}"
+                            href="{{ \App\Filament\Pages\SubscriptionCheckout::getUrl() }}?package_id={{ $package['id'] }}&billing_period={{ $packagePlan }}"
                             class="sub-card__cta"
                         >
                             اشترك الآن
                         </a>
                     </article>
                 @endforeach
+                </div>
             </div>
         @endif
     </div>
