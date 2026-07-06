@@ -168,6 +168,37 @@ if (! function_exists('isSubscriptionExpired')) {
     }
 }
 
+if (! function_exists('getSubscriptionInfo')) {
+    /**
+     * @return array{end_date: string, formatted: string, expired: bool, days_remaining: int}|null
+     */
+    function getSubscriptionInfo(): ?array
+    {
+        $tenantDetails = getTenantDetails();
+
+        if (! is_array($tenantDetails)) {
+            return null;
+        }
+
+        $subscription = $tenantDetails['data']['tenant_subscription'] ?? null;
+
+        if (! is_array($subscription) || empty($subscription['end_date'])) {
+            return null;
+        }
+
+        $end = \Carbon\Carbon::parse($subscription['end_date'])->startOfDay();
+        $today = now()->startOfDay();
+        $expired = $end->lt($today);
+
+        return [
+            'end_date' => $subscription['end_date'],
+            'formatted' => $end->locale('ar')->translatedFormat('d F Y'),
+            'expired' => $expired,
+            'days_remaining' => $expired ? 0 : (int) $today->diffInDays($end),
+        ];
+    }
+}
+
 // check if function tenantConnectionDatabase
 if (!function_exists('adminConnectionDatabase')) {
     function adminConnectionDatabase()

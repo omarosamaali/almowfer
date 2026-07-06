@@ -718,3 +718,103 @@
     color: #93c5fd;
 }
 
+/* Subscription expiry badge — Filament topbar */
+
+.subscription-expiry-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+.subscription-expiry-badge svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+}
+
+.subscription-expiry-badge__text {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+}
+
+.subscription-expiry-badge__label {
+    font-weight: 700;
+}
+
+.subscription-expiry-badge__date {
+    font-weight: 600;
+    opacity: 0.95;
+}
+
+.subscription-expiry-badge--active {
+    color: #047857;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.subscription-expiry-badge--active:hover {
+    background: #d1fae5;
+    border-color: #6ee7b7;
+}
+
+.subscription-expiry-badge--warning {
+    color: #b45309;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.subscription-expiry-badge--warning:hover {
+    background: #fef3c7;
+    border-color: #fcd34d;
+}
+
+.subscription-expiry-badge--expired {
+    color: #b91c1c;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.subscription-expiry-badge--expired:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.dark .subscription-expiry-badge--active {
+    color: #6ee7b7;
+    background: rgba(6, 78, 59, 0.35);
+    border-color: rgba(52, 211, 153, 0.35);
+}
+
+.dark .subscription-expiry-badge--warning {
+    color: #fcd34d;
+    background: rgba(120, 53, 15, 0.35);
+    border-color: rgba(251, 191, 36, 0.35);
+}
+
+.dark .subscription-expiry-badge--expired {
+    color: #fca5a5;
+    background: rgba(127, 29, 29, 0.35);
+    border-color: rgba(248, 113, 113, 0.35);
+}
+
+@media (max-width: 768px) {
+    .subscription-expiry-badge__label {
+        display: none;
+    }
+
+    .subscription-expiry-badge {
+        padding: 0.45rem 0.65rem;
+    }
+}
+
+
