@@ -199,6 +199,36 @@ if (! function_exists('getSubscriptionInfo')) {
     }
 }
 
+if (! function_exists('getSupportTickets')) {
+    /**
+     * @return list<array<string, mixed>>
+     */
+    function getSupportTickets(): array
+    {
+        $tenantDetails = getTenantDetails();
+
+        if (! is_array($tenantDetails)) {
+            return [];
+        }
+
+        $tickets = $tenantDetails['data']['tickets'] ?? [];
+
+        return is_array($tickets) ? array_values($tickets) : [];
+    }
+}
+
+if (! function_exists('supportTicketStatusLabel')) {
+    function supportTicketStatusLabel(string $status): string
+    {
+        return match (strtolower($status)) {
+            'open' => 'مفتوحة',
+            'in_progress' => 'قيد المعالجة',
+            'closed' => 'مغلقة',
+            default => $status,
+        };
+    }
+}
+
 // check if function tenantConnectionDatabase
 if (!function_exists('adminConnectionDatabase')) {
     function adminConnectionDatabase()

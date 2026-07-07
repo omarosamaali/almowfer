@@ -169,4 +169,55 @@ class AdminApiService
             ];
         }
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function createTicket(string $subject, string $message): array
+    {
+        if (! $this->baseUrl()) {
+            return [
+                'success' => false,
+                'message' => 'Admin API غير مُعد.',
+            ];
+        }
+
+        if (! Cookie::get('admin_api_token')) {
+            return [
+                'success' => false,
+                'message' => 'انتهت جلسة الاتصال. يرجى تسجيل الخروج ثم تسجيل الدخول مرة أخرى.',
+            ];
+        }
+
+        try {
+            $response = Http::withHeaders($this->headers())
+                ->post($this->baseUrl().'/api/create-ticket', [
+                    'subject' => $subject,
+                    'message' => $message,
+                    'tenant' => getTenantPrefix(),
+                ]);
+
+            $data = $response->json() ?? [
+                'success' => false,
+                'message' => 'استجابة غير صالحة من Admin API.',
+            ];
+
+            if (! $response->successful() || ($data['success'] ?? false) !== true) {
+                Log::warning('create-ticket failed', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                    'tenant' => getTenantPrefix(),
+                ]);
+            }
+
+            return $data;
+        } catch (\Exception $e) {
+            Log::error('Error creating ticket: '.$e->getMessage());
+
+            return [
+                'success' => false,
+                'message' => 'حدث خطأ أثناء إرسال التذكرة.',
+            ];
+        }
+    }
 }

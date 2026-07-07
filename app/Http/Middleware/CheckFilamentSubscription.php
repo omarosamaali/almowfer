@@ -15,6 +15,9 @@ class CheckFilamentSubscription
     protected array $allowedRoutes = [
         'filament.admin.pages.subscription-packages',
         'filament.admin.pages.subscription-checkout',
+        'filament.admin.pages.request-domain',
+        'filament.admin.pages.support-tickets',
+        'filament.admin.pages.support-tickets.view',
     ];
 
     /**
