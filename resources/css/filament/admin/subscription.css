@@ -1281,3 +1281,25 @@
     }
 }
 
+/* Promotional banner — Dashboard widget */
+
+.promo-banner {
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid var(--sub-border, #e5e7eb);
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.promo-banner__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 16rem;
+    object-fit: cover;
+}
+
+.dark .promo-banner {
+    background: rgb(17 24 39);
+    border-color: rgb(55 65 81);
+}

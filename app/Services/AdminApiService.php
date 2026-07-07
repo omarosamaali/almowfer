@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Log;
 
 class AdminApiService
 {
+    private static ?bool $promotionalBannerFetched = null;
+
+    /** @var array<string, mixed>|null */
+    private static ?array $promotionalBannerResponse = null;
+
     public function baseUrl(): ?string
     {
         return config('services.admin.url');
@@ -218,6 +223,48 @@ class AdminApiService
                 'success' => false,
                 'message' => 'حدث خطأ أثناء إرسال التذكرة.',
             ];
+        }
+    }
+
+    public function getPromotionalBanner(): ?string
+    {
+        if (self::$promotionalBannerFetched) {
+            $image = self::$promotionalBannerResponse['data']['image'] ?? null;
+
+            return is_string($image) && $image !== '' ? $image : null;
+        }
+
+        self::$promotionalBannerFetched = true;
+        self::$promotionalBannerResponse = null;
+
+        if (! $this->baseUrl() || ! Cookie::get('admin_api_token')) {
+            return null;
+        }
+
+        try {
+            $response = Http::withHeaders($this->headers())
+                ->get($this->baseUrl().'/api/promotional-banner');
+
+            if (! $response->successful()) {
+                Log::warning('Failed to fetch promotional banner: '.$response->body());
+
+                return null;
+            }
+
+            $data = $response->json() ?? [];
+            self::$promotionalBannerResponse = $data;
+
+            if (($data['success'] ?? false) !== true) {
+                return null;
+            }
+
+            $image = $data['data']['image'] ?? null;
+
+            return is_string($image) && $image !== '' ? $image : null;
+        } catch (\Exception $e) {
+            Log::error('Error fetching promotional banner: '.$e->getMessage());
+
+            return null;
         }
     }
 }
